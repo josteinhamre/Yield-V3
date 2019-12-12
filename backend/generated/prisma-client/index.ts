@@ -19,7 +19,7 @@ export interface Exists {
   user: (where?: UserWhereInput) => Promise<boolean>;
 }
 
-export interface Node { }
+export interface Node {}
 
 export type FragmentableArray<T> = Promise<Array<T>> & Fragmentable;
 
@@ -94,14 +94,22 @@ export interface Subscription {
 }
 
 export interface ClientConstructor<T> {
-  new(options?: BaseClientOptions): T;
+  new (options?: BaseClientOptions): T;
 }
 
 /**
  * Types
  */
 
-export type UserOrderByInput = "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC";
+export type UserOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
@@ -138,6 +146,22 @@ export interface UserWhereInput {
   name_not_starts_with?: Maybe<String>;
   name_ends_with?: Maybe<String>;
   name_not_ends_with?: Maybe<String>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
   AND?: Maybe<UserWhereInput[] | UserWhereInput>;
   OR?: Maybe<UserWhereInput[] | UserWhereInput>;
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
@@ -174,25 +198,33 @@ export interface NodeNode {
 export interface User {
   id: ID_Output;
   name: String;
+  updatedAt: DateTimeOutput;
+  createdAt: DateTimeOutput;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  createdAt: () => Promise<DateTimeOutput>;
 }
 
 export interface UserSubscription
   extends Promise<AsyncIterator<User>>,
-  Fragmentable {
+    Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface UserNullablePromise
   extends Promise<User | null>,
-  Fragmentable {
+    Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  createdAt: () => Promise<DateTimeOutput>;
 }
 
 export interface UserConnection {
@@ -202,7 +234,7 @@ export interface UserConnection {
 
 export interface UserConnectionPromise
   extends Promise<UserConnection>,
-  Fragmentable {
+    Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
   edges: <T = FragmentableArray<UserEdge>>() => T;
   aggregate: <T = AggregateUserPromise>() => T;
@@ -210,7 +242,7 @@ export interface UserConnectionPromise
 
 export interface UserConnectionSubscription
   extends Promise<AsyncIterator<UserConnection>>,
-  Fragmentable {
+    Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
   edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
   aggregate: <T = AggregateUserSubscription>() => T;
@@ -232,7 +264,7 @@ export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
 
 export interface PageInfoSubscription
   extends Promise<AsyncIterator<PageInfo>>,
-  Fragmentable {
+    Fragmentable {
   hasNextPage: () => Promise<AsyncIterator<Boolean>>;
   hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
   startCursor: () => Promise<AsyncIterator<String>>;
@@ -251,7 +283,7 @@ export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
 
 export interface UserEdgeSubscription
   extends Promise<AsyncIterator<UserEdge>>,
-  Fragmentable {
+    Fragmentable {
   node: <T = UserSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
@@ -262,13 +294,13 @@ export interface AggregateUser {
 
 export interface AggregateUserPromise
   extends Promise<AggregateUser>,
-  Fragmentable {
+    Fragmentable {
   count: () => Promise<Int>;
 }
 
 export interface AggregateUserSubscription
   extends Promise<AsyncIterator<AggregateUser>>,
-  Fragmentable {
+    Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
@@ -278,13 +310,13 @@ export interface BatchPayload {
 
 export interface BatchPayloadPromise
   extends Promise<BatchPayload>,
-  Fragmentable {
+    Fragmentable {
   count: () => Promise<Long>;
 }
 
 export interface BatchPayloadSubscription
   extends Promise<AsyncIterator<BatchPayload>>,
-  Fragmentable {
+    Fragmentable {
   count: () => Promise<AsyncIterator<Long>>;
 }
 
@@ -297,7 +329,7 @@ export interface UserSubscriptionPayload {
 
 export interface UserSubscriptionPayloadPromise
   extends Promise<UserSubscriptionPayload>,
-  Fragmentable {
+    Fragmentable {
   mutation: () => Promise<MutationType>;
   node: <T = UserPromise>() => T;
   updatedFields: () => Promise<String[]>;
@@ -306,7 +338,7 @@ export interface UserSubscriptionPayloadPromise
 
 export interface UserSubscriptionPayloadSubscription
   extends Promise<AsyncIterator<UserSubscriptionPayload>>,
-  Fragmentable {
+    Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
   node: <T = UserSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
@@ -316,20 +348,26 @@ export interface UserSubscriptionPayloadSubscription
 export interface UserPreviousValues {
   id: ID_Output;
   name: String;
+  updatedAt: DateTimeOutput;
+  createdAt: DateTimeOutput;
 }
 
 export interface UserPreviousValuesPromise
   extends Promise<UserPreviousValues>,
-  Fragmentable {
+    Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  createdAt: () => Promise<DateTimeOutput>;
 }
 
 export interface UserPreviousValuesSubscription
   extends Promise<AsyncIterator<UserPreviousValues>>,
-  Fragmentable {
+    Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 /*
@@ -342,6 +380,16 @@ export type ID_Output = string;
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
 */
 export type String = string;
+
+/*
+DateTime scalar input type, allowing Date
+*/
+export type DateTimeInput = Date | string;
+
+/*
+DateTime scalar output type, which is always a string
+*/
+export type DateTimeOutput = string;
 
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
