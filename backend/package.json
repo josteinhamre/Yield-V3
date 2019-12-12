@@ -1,0 +1,10 @@
+{
+  "name": "yield-v3-backend",
+  "version": "1.0.0",
+  "description": "Yield-V3 Backend of a Personal budgeting app, using TypeScript, Prisma and GraphQL-Yoga",
+  "scripts": {
+    "dev": ""
+  },
+  "author": "Jostein Hamre",
+  "license": "MIT"
+}

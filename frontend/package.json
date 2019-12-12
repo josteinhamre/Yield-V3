@@ -1,0 +1,11 @@
+{
+  "name": "yield-v3-frontend",
+  "version": "1.0.0",
+  "description": "Frontend of a Personal budgeting app, using React, Next and Apollo",
+  "main": "index.js",
+  "scripts": {
+    "dev": ""
+  },
+  "author": "Jostein Hamre",
+  "license": "MIT"
+}
