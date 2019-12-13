@@ -1,6 +1,75 @@
 type User {
-  id: ID! @id
+  id: ID! @id @unique
+  firstName: String!
+  lastName: String!
+  email: String! @unique
+  password: String!
+  resetToken: String!
+  tokenValidUntil: DateTime!
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+  accounts: [Account!]!
+  categories: [Category]!
+}
+
+type Bank {
+  id: ID! @id @unique
+  accounts: [Account]!
   name: String!
+}
+
+type Account {
+  id: ID! @id @unique
+  owner: User!
+  name: String!
+  number: Int!
+  balance: Float
+  bank: Bank!
+  bankAccountId: String!
+  transactions: [Transaction]!
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+}
+
+type Transaction {
+  id: ID! @id @unique
+  account: Account!
+  category: Category!
+  amount: Float!
+  info: String
+  approved: DateTime!
+  accountingDate: DateTime
+  isReservation: Boolean
+  type: String
+  typeCode: Int
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+}
+
+type Category {
+  id: ID! @id @unique
+  user: User!
+  transactions: [Transaction]!
+  icon: Icon!
+  color: String!
+  name: String!
+  priority: Int
+  budgets: [Budget]!
+}
+
+type Icon {
+  id: ID! @id @unique
+  name: String!
+  photo: String!
+  categories: [Category]!
+}
+
+type Budget {
+  id: ID! @id @unique
+  amount: Float!
+  startDate: DateTime!
+  endDate: DateTime!
+  category: Category!
   updatedAt: DateTime! @updatedAt
   createdAt: DateTime! @createdAt
 }
