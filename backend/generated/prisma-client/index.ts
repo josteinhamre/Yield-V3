@@ -467,14 +467,20 @@ export interface AccountWhereInput {
   name_not_starts_with?: Maybe<String>;
   name_ends_with?: Maybe<String>;
   name_not_ends_with?: Maybe<String>;
-  number?: Maybe<Int>;
-  number_not?: Maybe<Int>;
-  number_in?: Maybe<Int[] | Int>;
-  number_not_in?: Maybe<Int[] | Int>;
-  number_lt?: Maybe<Int>;
-  number_lte?: Maybe<Int>;
-  number_gt?: Maybe<Int>;
-  number_gte?: Maybe<Int>;
+  number?: Maybe<String>;
+  number_not?: Maybe<String>;
+  number_in?: Maybe<String[] | String>;
+  number_not_in?: Maybe<String[] | String>;
+  number_lt?: Maybe<String>;
+  number_lte?: Maybe<String>;
+  number_gt?: Maybe<String>;
+  number_gte?: Maybe<String>;
+  number_contains?: Maybe<String>;
+  number_not_contains?: Maybe<String>;
+  number_starts_with?: Maybe<String>;
+  number_not_starts_with?: Maybe<String>;
+  number_ends_with?: Maybe<String>;
+  number_not_ends_with?: Maybe<String>;
   balance?: Maybe<Float>;
   balance_not?: Maybe<Float>;
   balance_in?: Maybe<Float[] | Float>;
@@ -984,7 +990,7 @@ export interface AccountCreateInput {
   id?: Maybe<ID_Input>;
   owner: UserCreateOneWithoutAccountsInput;
   name: String;
-  number: Int;
+  number: String;
   balance?: Maybe<Float>;
   bank: BankCreateOneWithoutAccountsInput;
   bankAccountId: String;
@@ -1002,8 +1008,8 @@ export interface UserCreateWithoutAccountsInput {
   lastName: String;
   email: String;
   password: String;
-  resetToken: String;
-  tokenValidUntil: DateTimeInput;
+  resetToken?: Maybe<String>;
+  tokenValidUntil?: Maybe<DateTimeInput>;
   categories?: Maybe<CategoryCreateManyWithoutUserInput>;
 }
 
@@ -1037,7 +1043,7 @@ export interface TransactionCreateWithoutCategoryInput {
   account: AccountCreateOneWithoutTransactionsInput;
   amount: Float;
   info?: Maybe<String>;
-  approved: DateTimeInput;
+  approved?: Maybe<DateTimeInput>;
   accountingDate?: Maybe<DateTimeInput>;
   isReservation?: Maybe<Boolean>;
   type?: Maybe<String>;
@@ -1053,7 +1059,7 @@ export interface AccountCreateWithoutTransactionsInput {
   id?: Maybe<ID_Input>;
   owner: UserCreateOneWithoutAccountsInput;
   name: String;
-  number: Int;
+  number: String;
   balance?: Maybe<Float>;
   bank: BankCreateOneWithoutAccountsInput;
   bankAccountId: String;
@@ -1107,7 +1113,7 @@ export interface TransactionCreateWithoutAccountInput {
   category: CategoryCreateOneWithoutTransactionsInput;
   amount: Float;
   info?: Maybe<String>;
-  approved: DateTimeInput;
+  approved?: Maybe<DateTimeInput>;
   accountingDate?: Maybe<DateTimeInput>;
   isReservation?: Maybe<Boolean>;
   type?: Maybe<String>;
@@ -1140,8 +1146,8 @@ export interface UserCreateWithoutCategoriesInput {
   lastName: String;
   email: String;
   password: String;
-  resetToken: String;
-  tokenValidUntil: DateTimeInput;
+  resetToken?: Maybe<String>;
+  tokenValidUntil?: Maybe<DateTimeInput>;
   accounts?: Maybe<AccountCreateManyWithoutOwnerInput>;
 }
 
@@ -1155,7 +1161,7 @@ export interface AccountCreateManyWithoutOwnerInput {
 export interface AccountCreateWithoutOwnerInput {
   id?: Maybe<ID_Input>;
   name: String;
-  number: Int;
+  number: String;
   balance?: Maybe<Float>;
   bank: BankCreateOneWithoutAccountsInput;
   bankAccountId: String;
@@ -1165,7 +1171,7 @@ export interface AccountCreateWithoutOwnerInput {
 export interface AccountUpdateInput {
   owner?: Maybe<UserUpdateOneRequiredWithoutAccountsInput>;
   name?: Maybe<String>;
-  number?: Maybe<Int>;
+  number?: Maybe<String>;
   balance?: Maybe<Float>;
   bank?: Maybe<BankUpdateOneRequiredWithoutAccountsInput>;
   bankAccountId?: Maybe<String>;
@@ -1280,7 +1286,7 @@ export interface AccountUpdateOneRequiredWithoutTransactionsInput {
 export interface AccountUpdateWithoutTransactionsDataInput {
   owner?: Maybe<UserUpdateOneRequiredWithoutAccountsInput>;
   name?: Maybe<String>;
-  number?: Maybe<Int>;
+  number?: Maybe<String>;
   balance?: Maybe<Float>;
   bank?: Maybe<BankUpdateOneRequiredWithoutAccountsInput>;
   bankAccountId?: Maybe<String>;
@@ -1739,7 +1745,7 @@ export interface AccountUpdateWithWhereUniqueWithoutOwnerInput {
 
 export interface AccountUpdateWithoutOwnerDataInput {
   name?: Maybe<String>;
-  number?: Maybe<Int>;
+  number?: Maybe<String>;
   balance?: Maybe<Float>;
   bank?: Maybe<BankUpdateOneRequiredWithoutAccountsInput>;
   bankAccountId?: Maybe<String>;
@@ -1781,14 +1787,20 @@ export interface AccountScalarWhereInput {
   name_not_starts_with?: Maybe<String>;
   name_ends_with?: Maybe<String>;
   name_not_ends_with?: Maybe<String>;
-  number?: Maybe<Int>;
-  number_not?: Maybe<Int>;
-  number_in?: Maybe<Int[] | Int>;
-  number_not_in?: Maybe<Int[] | Int>;
-  number_lt?: Maybe<Int>;
-  number_lte?: Maybe<Int>;
-  number_gt?: Maybe<Int>;
-  number_gte?: Maybe<Int>;
+  number?: Maybe<String>;
+  number_not?: Maybe<String>;
+  number_in?: Maybe<String[] | String>;
+  number_not_in?: Maybe<String[] | String>;
+  number_lt?: Maybe<String>;
+  number_lte?: Maybe<String>;
+  number_gt?: Maybe<String>;
+  number_gte?: Maybe<String>;
+  number_contains?: Maybe<String>;
+  number_not_contains?: Maybe<String>;
+  number_starts_with?: Maybe<String>;
+  number_not_starts_with?: Maybe<String>;
+  number_ends_with?: Maybe<String>;
+  number_not_ends_with?: Maybe<String>;
   balance?: Maybe<Float>;
   balance_not?: Maybe<Float>;
   balance_in?: Maybe<Float[] | Float>;
@@ -1839,7 +1851,7 @@ export interface AccountUpdateManyWithWhereNestedInput {
 
 export interface AccountUpdateManyDataInput {
   name?: Maybe<String>;
-  number?: Maybe<Int>;
+  number?: Maybe<String>;
   balance?: Maybe<Float>;
   bankAccountId?: Maybe<String>;
 }
@@ -1862,7 +1874,7 @@ export interface TransactionUpsertWithWhereUniqueWithoutAccountInput {
 
 export interface AccountUpdateManyMutationInput {
   name?: Maybe<String>;
-  number?: Maybe<Int>;
+  number?: Maybe<String>;
   balance?: Maybe<Float>;
   bankAccountId?: Maybe<String>;
 }
@@ -1884,7 +1896,7 @@ export interface AccountCreateWithoutBankInput {
   id?: Maybe<ID_Input>;
   owner: UserCreateOneWithoutAccountsInput;
   name: String;
-  number: Int;
+  number: String;
   balance?: Maybe<Float>;
   bankAccountId: String;
   transactions?: Maybe<TransactionCreateManyWithoutAccountInput>;
@@ -1926,7 +1938,7 @@ export interface AccountUpdateWithWhereUniqueWithoutBankInput {
 export interface AccountUpdateWithoutBankDataInput {
   owner?: Maybe<UserUpdateOneRequiredWithoutAccountsInput>;
   name?: Maybe<String>;
-  number?: Maybe<Int>;
+  number?: Maybe<String>;
   balance?: Maybe<Float>;
   bankAccountId?: Maybe<String>;
   transactions?: Maybe<TransactionUpdateManyWithoutAccountInput>;
@@ -2110,7 +2122,7 @@ export interface TransactionCreateInput {
   category: CategoryCreateOneWithoutTransactionsInput;
   amount: Float;
   info?: Maybe<String>;
-  approved: DateTimeInput;
+  approved?: Maybe<DateTimeInput>;
   accountingDate?: Maybe<DateTimeInput>;
   isReservation?: Maybe<Boolean>;
   type?: Maybe<String>;
@@ -2145,8 +2157,8 @@ export interface UserCreateInput {
   lastName: String;
   email: String;
   password: String;
-  resetToken: String;
-  tokenValidUntil: DateTimeInput;
+  resetToken?: Maybe<String>;
+  tokenValidUntil?: Maybe<DateTimeInput>;
   accounts?: Maybe<AccountCreateManyWithoutOwnerInput>;
   categories?: Maybe<CategoryCreateManyWithoutUserInput>;
 }
@@ -2265,7 +2277,7 @@ export interface NodeNode {
 export interface Account {
   id: ID_Output;
   name: String;
-  number: Int;
+  number: String;
   balance?: Float;
   bankAccountId: String;
   updatedAt: DateTimeOutput;
@@ -2276,7 +2288,7 @@ export interface AccountPromise extends Promise<Account>, Fragmentable {
   id: () => Promise<ID_Output>;
   owner: <T = UserPromise>() => T;
   name: () => Promise<String>;
-  number: () => Promise<Int>;
+  number: () => Promise<String>;
   balance: () => Promise<Float>;
   bank: <T = BankPromise>() => T;
   bankAccountId: () => Promise<String>;
@@ -2299,7 +2311,7 @@ export interface AccountSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   owner: <T = UserSubscription>() => T;
   name: () => Promise<AsyncIterator<String>>;
-  number: () => Promise<AsyncIterator<Int>>;
+  number: () => Promise<AsyncIterator<String>>;
   balance: () => Promise<AsyncIterator<Float>>;
   bank: <T = BankSubscription>() => T;
   bankAccountId: () => Promise<AsyncIterator<String>>;
@@ -2322,7 +2334,7 @@ export interface AccountNullablePromise
   id: () => Promise<ID_Output>;
   owner: <T = UserPromise>() => T;
   name: () => Promise<String>;
-  number: () => Promise<Int>;
+  number: () => Promise<String>;
   balance: () => Promise<Float>;
   bank: <T = BankPromise>() => T;
   bankAccountId: () => Promise<String>;
@@ -2345,8 +2357,8 @@ export interface User {
   lastName: String;
   email: String;
   password: String;
-  resetToken: String;
-  tokenValidUntil: DateTimeOutput;
+  resetToken?: String;
+  tokenValidUntil?: DateTimeOutput;
   updatedAt: DateTimeOutput;
   createdAt: DateTimeOutput;
 }
@@ -2541,7 +2553,7 @@ export interface Transaction {
   id: ID_Output;
   amount: Float;
   info?: String;
-  approved: DateTimeOutput;
+  approved?: DateTimeOutput;
   accountingDate?: DateTimeOutput;
   isReservation?: Boolean;
   type?: String;
@@ -3197,7 +3209,7 @@ export interface AccountSubscriptionPayloadSubscription
 export interface AccountPreviousValues {
   id: ID_Output;
   name: String;
-  number: Int;
+  number: String;
   balance?: Float;
   bankAccountId: String;
   updatedAt: DateTimeOutput;
@@ -3209,7 +3221,7 @@ export interface AccountPreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
-  number: () => Promise<Int>;
+  number: () => Promise<String>;
   balance: () => Promise<Float>;
   bankAccountId: () => Promise<String>;
   updatedAt: () => Promise<DateTimeOutput>;
@@ -3221,7 +3233,7 @@ export interface AccountPreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
-  number: () => Promise<AsyncIterator<Int>>;
+  number: () => Promise<AsyncIterator<String>>;
   balance: () => Promise<AsyncIterator<Float>>;
   bankAccountId: () => Promise<AsyncIterator<String>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -3454,7 +3466,7 @@ export interface TransactionPreviousValues {
   id: ID_Output;
   amount: Float;
   info?: String;
-  approved: DateTimeOutput;
+  approved?: DateTimeOutput;
   accountingDate?: DateTimeOutput;
   isReservation?: Boolean;
   type?: String;
@@ -3524,8 +3536,8 @@ export interface UserPreviousValues {
   lastName: String;
   email: String;
   password: String;
-  resetToken: String;
-  tokenValidUntil: DateTimeOutput;
+  resetToken?: String;
+  tokenValidUntil?: DateTimeOutput;
   updatedAt: DateTimeOutput;
   createdAt: DateTimeOutput;
 }

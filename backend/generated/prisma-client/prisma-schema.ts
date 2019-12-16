@@ -6,7 +6,7 @@ export const typeDefs = /* GraphQL */ `type Account {
   id: ID!
   owner: User!
   name: String!
-  number: Int!
+  number: String!
   balance: Float
   bank: Bank!
   bankAccountId: String!
@@ -25,7 +25,7 @@ input AccountCreateInput {
   id: ID
   owner: UserCreateOneWithoutAccountsInput!
   name: String!
-  number: Int!
+  number: String!
   balance: Float
   bank: BankCreateOneWithoutAccountsInput!
   bankAccountId: String!
@@ -51,7 +51,7 @@ input AccountCreateWithoutBankInput {
   id: ID
   owner: UserCreateOneWithoutAccountsInput!
   name: String!
-  number: Int!
+  number: String!
   balance: Float
   bankAccountId: String!
   transactions: TransactionCreateManyWithoutAccountInput
@@ -60,7 +60,7 @@ input AccountCreateWithoutBankInput {
 input AccountCreateWithoutOwnerInput {
   id: ID
   name: String!
-  number: Int!
+  number: String!
   balance: Float
   bank: BankCreateOneWithoutAccountsInput!
   bankAccountId: String!
@@ -71,7 +71,7 @@ input AccountCreateWithoutTransactionsInput {
   id: ID
   owner: UserCreateOneWithoutAccountsInput!
   name: String!
-  number: Int!
+  number: String!
   balance: Float
   bank: BankCreateOneWithoutAccountsInput!
   bankAccountId: String!
@@ -102,7 +102,7 @@ enum AccountOrderByInput {
 type AccountPreviousValues {
   id: ID!
   name: String!
-  number: Int!
+  number: String!
   balance: Float
   bankAccountId: String!
   updatedAt: DateTime!
@@ -138,14 +138,20 @@ input AccountScalarWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
-  number: Int
-  number_not: Int
-  number_in: [Int!]
-  number_not_in: [Int!]
-  number_lt: Int
-  number_lte: Int
-  number_gt: Int
-  number_gte: Int
+  number: String
+  number_not: String
+  number_in: [String!]
+  number_not_in: [String!]
+  number_lt: String
+  number_lte: String
+  number_gt: String
+  number_gte: String
+  number_contains: String
+  number_not_contains: String
+  number_starts_with: String
+  number_not_starts_with: String
+  number_ends_with: String
+  number_not_ends_with: String
   balance: Float
   balance_not: Float
   balance_in: [Float!]
@@ -210,7 +216,7 @@ input AccountSubscriptionWhereInput {
 input AccountUpdateInput {
   owner: UserUpdateOneRequiredWithoutAccountsInput
   name: String
-  number: Int
+  number: String
   balance: Float
   bank: BankUpdateOneRequiredWithoutAccountsInput
   bankAccountId: String
@@ -219,14 +225,14 @@ input AccountUpdateInput {
 
 input AccountUpdateManyDataInput {
   name: String
-  number: Int
+  number: String
   balance: Float
   bankAccountId: String
 }
 
 input AccountUpdateManyMutationInput {
   name: String
-  number: Int
+  number: String
   balance: Float
   bankAccountId: String
 }
@@ -270,7 +276,7 @@ input AccountUpdateOneRequiredWithoutTransactionsInput {
 input AccountUpdateWithoutBankDataInput {
   owner: UserUpdateOneRequiredWithoutAccountsInput
   name: String
-  number: Int
+  number: String
   balance: Float
   bankAccountId: String
   transactions: TransactionUpdateManyWithoutAccountInput
@@ -278,7 +284,7 @@ input AccountUpdateWithoutBankDataInput {
 
 input AccountUpdateWithoutOwnerDataInput {
   name: String
-  number: Int
+  number: String
   balance: Float
   bank: BankUpdateOneRequiredWithoutAccountsInput
   bankAccountId: String
@@ -288,7 +294,7 @@ input AccountUpdateWithoutOwnerDataInput {
 input AccountUpdateWithoutTransactionsDataInput {
   owner: UserUpdateOneRequiredWithoutAccountsInput
   name: String
-  number: Int
+  number: String
   balance: Float
   bank: BankUpdateOneRequiredWithoutAccountsInput
   bankAccountId: String
@@ -351,14 +357,20 @@ input AccountWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
-  number: Int
-  number_not: Int
-  number_in: [Int!]
-  number_not_in: [Int!]
-  number_lt: Int
-  number_lte: Int
-  number_gt: Int
-  number_gte: Int
+  number: String
+  number_not: String
+  number_in: [String!]
+  number_not_in: [String!]
+  number_lt: String
+  number_lte: String
+  number_gt: String
+  number_gte: String
+  number_contains: String
+  number_not_contains: String
+  number_starts_with: String
+  number_not_starts_with: String
+  number_ends_with: String
+  number_not_ends_with: String
   balance: Float
   balance_not: Float
   balance_in: [Float!]
@@ -1477,7 +1489,7 @@ type Transaction {
   category: Category!
   amount: Float!
   info: String
-  approved: DateTime!
+  approved: DateTime
   accountingDate: DateTime
   isReservation: Boolean
   type: String
@@ -1498,7 +1510,7 @@ input TransactionCreateInput {
   category: CategoryCreateOneWithoutTransactionsInput!
   amount: Float!
   info: String
-  approved: DateTime!
+  approved: DateTime
   accountingDate: DateTime
   isReservation: Boolean
   type: String
@@ -1520,7 +1532,7 @@ input TransactionCreateWithoutAccountInput {
   category: CategoryCreateOneWithoutTransactionsInput!
   amount: Float!
   info: String
-  approved: DateTime!
+  approved: DateTime
   accountingDate: DateTime
   isReservation: Boolean
   type: String
@@ -1532,7 +1544,7 @@ input TransactionCreateWithoutCategoryInput {
   account: AccountCreateOneWithoutTransactionsInput!
   amount: Float!
   info: String
-  approved: DateTime!
+  approved: DateTime
   accountingDate: DateTime
   isReservation: Boolean
   type: String
@@ -1571,7 +1583,7 @@ type TransactionPreviousValues {
   id: ID!
   amount: Float!
   info: String
-  approved: DateTime!
+  approved: DateTime
   accountingDate: DateTime
   isReservation: Boolean
   type: String
@@ -1911,8 +1923,8 @@ type User {
   lastName: String!
   email: String!
   password: String!
-  resetToken: String!
-  tokenValidUntil: DateTime!
+  resetToken: String
+  tokenValidUntil: DateTime
   updatedAt: DateTime!
   createdAt: DateTime!
   accounts(where: AccountWhereInput, orderBy: AccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Account!]
@@ -1931,8 +1943,8 @@ input UserCreateInput {
   lastName: String!
   email: String!
   password: String!
-  resetToken: String!
-  tokenValidUntil: DateTime!
+  resetToken: String
+  tokenValidUntil: DateTime
   accounts: AccountCreateManyWithoutOwnerInput
   categories: CategoryCreateManyWithoutUserInput
 }
@@ -1953,8 +1965,8 @@ input UserCreateWithoutAccountsInput {
   lastName: String!
   email: String!
   password: String!
-  resetToken: String!
-  tokenValidUntil: DateTime!
+  resetToken: String
+  tokenValidUntil: DateTime
   categories: CategoryCreateManyWithoutUserInput
 }
 
@@ -1964,8 +1976,8 @@ input UserCreateWithoutCategoriesInput {
   lastName: String!
   email: String!
   password: String!
-  resetToken: String!
-  tokenValidUntil: DateTime!
+  resetToken: String
+  tokenValidUntil: DateTime
   accounts: AccountCreateManyWithoutOwnerInput
 }
 
@@ -2001,8 +2013,8 @@ type UserPreviousValues {
   lastName: String!
   email: String!
   password: String!
-  resetToken: String!
-  tokenValidUntil: DateTime!
+  resetToken: String
+  tokenValidUntil: DateTime
   updatedAt: DateTime!
   createdAt: DateTime!
 }

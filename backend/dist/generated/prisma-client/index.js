@@ -12,6 +12,30 @@ exports.models = [
     {
         name: "User",
         embedded: false
+    },
+    {
+        name: "Bank",
+        embedded: false
+    },
+    {
+        name: "Account",
+        embedded: false
+    },
+    {
+        name: "Transaction",
+        embedded: false
+    },
+    {
+        name: "Category",
+        embedded: false
+    },
+    {
+        name: "Icon",
+        embedded: false
+    },
+    {
+        name: "Budget",
+        embedded: false
     }
 ];
 /**

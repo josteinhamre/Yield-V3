@@ -4,11 +4,11 @@ type User {
   lastName: String!
   email: String! @unique
   password: String!
-  resetToken: String!
-  tokenValidUntil: DateTime!
+  resetToken: String
+  tokenValidUntil: DateTime
   updatedAt: DateTime! @updatedAt
   createdAt: DateTime! @createdAt
-  accounts: [Account!]!
+  accounts: [Account]!
   categories: [Category]!
 }
 
@@ -22,7 +22,7 @@ type Account {
   id: ID! @id @unique
   owner: User!
   name: String!
-  number: Int!
+  number: String!
   balance: Float
   bank: Bank!
   bankAccountId: String!
@@ -37,7 +37,7 @@ type Transaction {
   category: Category!
   amount: Float!
   info: String
-  approved: DateTime!
+  approved: DateTime
   accountingDate: DateTime
   isReservation: Boolean
   type: String

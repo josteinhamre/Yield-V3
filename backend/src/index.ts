@@ -5,7 +5,8 @@ import db from "./db";
 const typeDefs = gql`
   type User {
     id: ID
-    name: String
+    firstName: String
+    lastName: String
   }
 
   type Query {

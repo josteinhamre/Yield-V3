@@ -57,7 +57,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv").config();
 var apollo_server_1 = require("apollo-server");
 var db_1 = __importDefault(require("./db"));
-var typeDefs = apollo_server_1.gql(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  type User {\n    id: ID\n    name: String\n  }\n\n  type Query {\n    users: [User]\n  }\n"], ["\n  type User {\n    id: ID\n    name: String\n  }\n\n  type Query {\n    users: [User]\n  }\n"])));
+var typeDefs = apollo_server_1.gql(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  type User {\n    id: ID\n    firstName: String\n    lastName: String\n  }\n\n  type Query {\n    users: [User]\n  }\n"], ["\n  type User {\n    id: ID\n    firstName: String\n    lastName: String\n  }\n\n  type Query {\n    users: [User]\n  }\n"])));
 var resolvers = {
     Query: {
         users: function (parent, args, ctx, info) {
