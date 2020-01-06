@@ -17,12 +17,15 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'gotham';
         padding: 0;
         margin: 0;
-        font-size: 1.5rem;
-        line-height: 2;
+        font-size: 15px;
     }
     a {
         text-decoration: none;
         color: {theme.black}
+    }
+    p {
+      margin-block-start: 0;
+      margin-block-end: 0;
     }
 `;
 
