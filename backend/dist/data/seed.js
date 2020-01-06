@@ -40,9 +40,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var csv_parser_1 = __importDefault(require("csv-parser"));
-require("dotenv").config();
+var dotenv_1 = __importDefault(require("dotenv"));
 var fs_1 = __importDefault(require("fs"));
 var db_1 = __importDefault(require("../src/db"));
+dotenv_1.default.config();
 function seed() {
     return __awaiter(this, void 0, void 0, function () {
         var icons, user, account, _i, icons_1, icon;
@@ -129,6 +130,7 @@ function seed() {
                     _i++;
                     return [3 /*break*/, 3];
                 case 6:
+                    // Parses the seed_helper CSV file, containing 248 transactions.
                     fs_1.default.createReadStream(__dirname + "/seed_helper.csv")
                         .pipe(csv_parser_1.default({ separator: ";" }))
                         .on("data", function (row) { return __awaiter(_this, void 0, void 0, function () {
@@ -154,6 +156,7 @@ function seed() {
                                         })];
                                 case 1:
                                     category = _a.sent();
+                                    // Creates a transaction x 248
                                     db_1.default.mutation.createTransaction({
                                         data: {
                                             account: {
@@ -177,7 +180,7 @@ function seed() {
                         });
                     }); })
                         .on("end", function () {
-                        console.log("CSV file successfully processed");
+                        return "";
                     });
                     return [2 /*return*/];
             }

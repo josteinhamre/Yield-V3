@@ -1,7 +1,19 @@
+import { ApolloProvider } from "@apollo/react-hooks";
+import { InMemoryCache } from "apollo-boost";
+import ApolloClient from "apollo-client";
+import { createHttpLink } from "apollo-link-http";
 import App from "next/app";
+import fetch from "node-fetch";
 import React from "react";
 import Page from "../components/Page";
 import GlobalStyle from "../components/styles/GlobalStyle";
+
+const link = createHttpLink({ fetch: fetch as any, uri: "http://localhost:4466/" });
+
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  link,
+});
 
 class MyApp extends App {
   // Only uncomment this method if you have blocking data requirements for
@@ -19,10 +31,12 @@ class MyApp extends App {
   public render() {
     const { Component } = this.props;
     return (
-      <Page>
-        <GlobalStyle />
-        <Component />
-      </Page>
+      <ApolloProvider client={client}>
+        <Page>
+          <GlobalStyle />
+          <Component />
+        </Page>
+      </ApolloProvider>
 
     );
 
