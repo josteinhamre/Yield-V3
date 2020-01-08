@@ -12,12 +12,13 @@
     "csv-parser": "^2.3.2",
     "dotenv": "^8.2.0",
     "graphql": "^14.5.8",
+    "graphql-import": "^0.7.1",
     "moment": "^2.24.0",
     "prisma": "^1.34.10",
     "prisma-binding": "^2.3.16",
     "typescript": "^3.7.3"
   },
   "devDependencies": {
-    "tslint-config-airbnb": "^5.11.2",
+    "tslint-config-airbnb": "^5.11.2"
   }
 }
