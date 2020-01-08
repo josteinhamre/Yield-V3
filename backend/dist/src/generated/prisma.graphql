@@ -1,0 +1,2223 @@
+type Account {
+  id: ID!
+  owner: User!
+  name: String!
+  number: String!
+  balance: Float
+  bank: Bank!
+  bankAccountId: String!
+  transactions(where: TransactionWhereInput, orderBy: TransactionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Transaction!]
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+type AccountConnection {
+  pageInfo: PageInfo!
+  edges: [AccountEdge]!
+  aggregate: AggregateAccount!
+}
+
+input AccountCreateInput {
+  id: ID
+  owner: UserCreateOneWithoutAccountsInput!
+  name: String!
+  number: String!
+  balance: Float
+  bank: BankCreateOneWithoutAccountsInput!
+  bankAccountId: String!
+  transactions: TransactionCreateManyWithoutAccountInput
+}
+
+input AccountCreateManyWithoutBankInput {
+  create: [AccountCreateWithoutBankInput!]
+  connect: [AccountWhereUniqueInput!]
+}
+
+input AccountCreateManyWithoutOwnerInput {
+  create: [AccountCreateWithoutOwnerInput!]
+  connect: [AccountWhereUniqueInput!]
+}
+
+input AccountCreateOneWithoutTransactionsInput {
+  create: AccountCreateWithoutTransactionsInput
+  connect: AccountWhereUniqueInput
+}
+
+input AccountCreateWithoutBankInput {
+  id: ID
+  owner: UserCreateOneWithoutAccountsInput!
+  name: String!
+  number: String!
+  balance: Float
+  bankAccountId: String!
+  transactions: TransactionCreateManyWithoutAccountInput
+}
+
+input AccountCreateWithoutOwnerInput {
+  id: ID
+  name: String!
+  number: String!
+  balance: Float
+  bank: BankCreateOneWithoutAccountsInput!
+  bankAccountId: String!
+  transactions: TransactionCreateManyWithoutAccountInput
+}
+
+input AccountCreateWithoutTransactionsInput {
+  id: ID
+  owner: UserCreateOneWithoutAccountsInput!
+  name: String!
+  number: String!
+  balance: Float
+  bank: BankCreateOneWithoutAccountsInput!
+  bankAccountId: String!
+}
+
+type AccountEdge {
+  node: Account!
+  cursor: String!
+}
+
+enum AccountOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  number_ASC
+  number_DESC
+  balance_ASC
+  balance_DESC
+  bankAccountId_ASC
+  bankAccountId_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type AccountPreviousValues {
+  id: ID!
+  name: String!
+  number: String!
+  balance: Float
+  bankAccountId: String!
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+input AccountScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  number: String
+  number_not: String
+  number_in: [String!]
+  number_not_in: [String!]
+  number_lt: String
+  number_lte: String
+  number_gt: String
+  number_gte: String
+  number_contains: String
+  number_not_contains: String
+  number_starts_with: String
+  number_not_starts_with: String
+  number_ends_with: String
+  number_not_ends_with: String
+  balance: Float
+  balance_not: Float
+  balance_in: [Float!]
+  balance_not_in: [Float!]
+  balance_lt: Float
+  balance_lte: Float
+  balance_gt: Float
+  balance_gte: Float
+  bankAccountId: String
+  bankAccountId_not: String
+  bankAccountId_in: [String!]
+  bankAccountId_not_in: [String!]
+  bankAccountId_lt: String
+  bankAccountId_lte: String
+  bankAccountId_gt: String
+  bankAccountId_gte: String
+  bankAccountId_contains: String
+  bankAccountId_not_contains: String
+  bankAccountId_starts_with: String
+  bankAccountId_not_starts_with: String
+  bankAccountId_ends_with: String
+  bankAccountId_not_ends_with: String
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [AccountScalarWhereInput!]
+  OR: [AccountScalarWhereInput!]
+  NOT: [AccountScalarWhereInput!]
+}
+
+type AccountSubscriptionPayload {
+  mutation: MutationType!
+  node: Account
+  updatedFields: [String!]
+  previousValues: AccountPreviousValues
+}
+
+input AccountSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: AccountWhereInput
+  AND: [AccountSubscriptionWhereInput!]
+  OR: [AccountSubscriptionWhereInput!]
+  NOT: [AccountSubscriptionWhereInput!]
+}
+
+input AccountUpdateInput {
+  owner: UserUpdateOneRequiredWithoutAccountsInput
+  name: String
+  number: String
+  balance: Float
+  bank: BankUpdateOneRequiredWithoutAccountsInput
+  bankAccountId: String
+  transactions: TransactionUpdateManyWithoutAccountInput
+}
+
+input AccountUpdateManyDataInput {
+  name: String
+  number: String
+  balance: Float
+  bankAccountId: String
+}
+
+input AccountUpdateManyMutationInput {
+  name: String
+  number: String
+  balance: Float
+  bankAccountId: String
+}
+
+input AccountUpdateManyWithoutBankInput {
+  create: [AccountCreateWithoutBankInput!]
+  delete: [AccountWhereUniqueInput!]
+  connect: [AccountWhereUniqueInput!]
+  set: [AccountWhereUniqueInput!]
+  disconnect: [AccountWhereUniqueInput!]
+  update: [AccountUpdateWithWhereUniqueWithoutBankInput!]
+  upsert: [AccountUpsertWithWhereUniqueWithoutBankInput!]
+  deleteMany: [AccountScalarWhereInput!]
+  updateMany: [AccountUpdateManyWithWhereNestedInput!]
+}
+
+input AccountUpdateManyWithoutOwnerInput {
+  create: [AccountCreateWithoutOwnerInput!]
+  delete: [AccountWhereUniqueInput!]
+  connect: [AccountWhereUniqueInput!]
+  set: [AccountWhereUniqueInput!]
+  disconnect: [AccountWhereUniqueInput!]
+  update: [AccountUpdateWithWhereUniqueWithoutOwnerInput!]
+  upsert: [AccountUpsertWithWhereUniqueWithoutOwnerInput!]
+  deleteMany: [AccountScalarWhereInput!]
+  updateMany: [AccountUpdateManyWithWhereNestedInput!]
+}
+
+input AccountUpdateManyWithWhereNestedInput {
+  where: AccountScalarWhereInput!
+  data: AccountUpdateManyDataInput!
+}
+
+input AccountUpdateOneRequiredWithoutTransactionsInput {
+  create: AccountCreateWithoutTransactionsInput
+  update: AccountUpdateWithoutTransactionsDataInput
+  upsert: AccountUpsertWithoutTransactionsInput
+  connect: AccountWhereUniqueInput
+}
+
+input AccountUpdateWithoutBankDataInput {
+  owner: UserUpdateOneRequiredWithoutAccountsInput
+  name: String
+  number: String
+  balance: Float
+  bankAccountId: String
+  transactions: TransactionUpdateManyWithoutAccountInput
+}
+
+input AccountUpdateWithoutOwnerDataInput {
+  name: String
+  number: String
+  balance: Float
+  bank: BankUpdateOneRequiredWithoutAccountsInput
+  bankAccountId: String
+  transactions: TransactionUpdateManyWithoutAccountInput
+}
+
+input AccountUpdateWithoutTransactionsDataInput {
+  owner: UserUpdateOneRequiredWithoutAccountsInput
+  name: String
+  number: String
+  balance: Float
+  bank: BankUpdateOneRequiredWithoutAccountsInput
+  bankAccountId: String
+}
+
+input AccountUpdateWithWhereUniqueWithoutBankInput {
+  where: AccountWhereUniqueInput!
+  data: AccountUpdateWithoutBankDataInput!
+}
+
+input AccountUpdateWithWhereUniqueWithoutOwnerInput {
+  where: AccountWhereUniqueInput!
+  data: AccountUpdateWithoutOwnerDataInput!
+}
+
+input AccountUpsertWithoutTransactionsInput {
+  update: AccountUpdateWithoutTransactionsDataInput!
+  create: AccountCreateWithoutTransactionsInput!
+}
+
+input AccountUpsertWithWhereUniqueWithoutBankInput {
+  where: AccountWhereUniqueInput!
+  update: AccountUpdateWithoutBankDataInput!
+  create: AccountCreateWithoutBankInput!
+}
+
+input AccountUpsertWithWhereUniqueWithoutOwnerInput {
+  where: AccountWhereUniqueInput!
+  update: AccountUpdateWithoutOwnerDataInput!
+  create: AccountCreateWithoutOwnerInput!
+}
+
+input AccountWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  owner: UserWhereInput
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  number: String
+  number_not: String
+  number_in: [String!]
+  number_not_in: [String!]
+  number_lt: String
+  number_lte: String
+  number_gt: String
+  number_gte: String
+  number_contains: String
+  number_not_contains: String
+  number_starts_with: String
+  number_not_starts_with: String
+  number_ends_with: String
+  number_not_ends_with: String
+  balance: Float
+  balance_not: Float
+  balance_in: [Float!]
+  balance_not_in: [Float!]
+  balance_lt: Float
+  balance_lte: Float
+  balance_gt: Float
+  balance_gte: Float
+  bank: BankWhereInput
+  bankAccountId: String
+  bankAccountId_not: String
+  bankAccountId_in: [String!]
+  bankAccountId_not_in: [String!]
+  bankAccountId_lt: String
+  bankAccountId_lte: String
+  bankAccountId_gt: String
+  bankAccountId_gte: String
+  bankAccountId_contains: String
+  bankAccountId_not_contains: String
+  bankAccountId_starts_with: String
+  bankAccountId_not_starts_with: String
+  bankAccountId_ends_with: String
+  bankAccountId_not_ends_with: String
+  transactions_every: TransactionWhereInput
+  transactions_some: TransactionWhereInput
+  transactions_none: TransactionWhereInput
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [AccountWhereInput!]
+  OR: [AccountWhereInput!]
+  NOT: [AccountWhereInput!]
+}
+
+input AccountWhereUniqueInput {
+  id: ID
+}
+
+type AggregateAccount {
+  count: Int!
+}
+
+type AggregateBank {
+  count: Int!
+}
+
+type AggregateBudget {
+  count: Int!
+}
+
+type AggregateCategory {
+  count: Int!
+}
+
+type AggregateIcon {
+  count: Int!
+}
+
+type AggregateTransaction {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type Bank {
+  id: ID!
+  accounts(where: AccountWhereInput, orderBy: AccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Account!]
+  name: String!
+}
+
+type BankConnection {
+  pageInfo: PageInfo!
+  edges: [BankEdge]!
+  aggregate: AggregateBank!
+}
+
+input BankCreateInput {
+  id: ID
+  accounts: AccountCreateManyWithoutBankInput
+  name: String!
+}
+
+input BankCreateOneWithoutAccountsInput {
+  create: BankCreateWithoutAccountsInput
+  connect: BankWhereUniqueInput
+}
+
+input BankCreateWithoutAccountsInput {
+  id: ID
+  name: String!
+}
+
+type BankEdge {
+  node: Bank!
+  cursor: String!
+}
+
+enum BankOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+}
+
+type BankPreviousValues {
+  id: ID!
+  name: String!
+}
+
+type BankSubscriptionPayload {
+  mutation: MutationType!
+  node: Bank
+  updatedFields: [String!]
+  previousValues: BankPreviousValues
+}
+
+input BankSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: BankWhereInput
+  AND: [BankSubscriptionWhereInput!]
+  OR: [BankSubscriptionWhereInput!]
+  NOT: [BankSubscriptionWhereInput!]
+}
+
+input BankUpdateInput {
+  accounts: AccountUpdateManyWithoutBankInput
+  name: String
+}
+
+input BankUpdateManyMutationInput {
+  name: String
+}
+
+input BankUpdateOneRequiredWithoutAccountsInput {
+  create: BankCreateWithoutAccountsInput
+  update: BankUpdateWithoutAccountsDataInput
+  upsert: BankUpsertWithoutAccountsInput
+  connect: BankWhereUniqueInput
+}
+
+input BankUpdateWithoutAccountsDataInput {
+  name: String
+}
+
+input BankUpsertWithoutAccountsInput {
+  update: BankUpdateWithoutAccountsDataInput!
+  create: BankCreateWithoutAccountsInput!
+}
+
+input BankWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  accounts_every: AccountWhereInput
+  accounts_some: AccountWhereInput
+  accounts_none: AccountWhereInput
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  AND: [BankWhereInput!]
+  OR: [BankWhereInput!]
+  NOT: [BankWhereInput!]
+}
+
+input BankWhereUniqueInput {
+  id: ID
+}
+
+type BatchPayload {
+  count: Long!
+}
+
+type Budget {
+  id: ID!
+  amount: Float!
+  startDate: DateTime!
+  endDate: DateTime!
+  category: Category!
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+type BudgetConnection {
+  pageInfo: PageInfo!
+  edges: [BudgetEdge]!
+  aggregate: AggregateBudget!
+}
+
+input BudgetCreateInput {
+  id: ID
+  amount: Float!
+  startDate: DateTime!
+  endDate: DateTime!
+  category: CategoryCreateOneWithoutBudgetsInput!
+}
+
+input BudgetCreateManyWithoutCategoryInput {
+  create: [BudgetCreateWithoutCategoryInput!]
+  connect: [BudgetWhereUniqueInput!]
+}
+
+input BudgetCreateWithoutCategoryInput {
+  id: ID
+  amount: Float!
+  startDate: DateTime!
+  endDate: DateTime!
+}
+
+type BudgetEdge {
+  node: Budget!
+  cursor: String!
+}
+
+enum BudgetOrderByInput {
+  id_ASC
+  id_DESC
+  amount_ASC
+  amount_DESC
+  startDate_ASC
+  startDate_DESC
+  endDate_ASC
+  endDate_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type BudgetPreviousValues {
+  id: ID!
+  amount: Float!
+  startDate: DateTime!
+  endDate: DateTime!
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+input BudgetScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  amount: Float
+  amount_not: Float
+  amount_in: [Float!]
+  amount_not_in: [Float!]
+  amount_lt: Float
+  amount_lte: Float
+  amount_gt: Float
+  amount_gte: Float
+  startDate: DateTime
+  startDate_not: DateTime
+  startDate_in: [DateTime!]
+  startDate_not_in: [DateTime!]
+  startDate_lt: DateTime
+  startDate_lte: DateTime
+  startDate_gt: DateTime
+  startDate_gte: DateTime
+  endDate: DateTime
+  endDate_not: DateTime
+  endDate_in: [DateTime!]
+  endDate_not_in: [DateTime!]
+  endDate_lt: DateTime
+  endDate_lte: DateTime
+  endDate_gt: DateTime
+  endDate_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [BudgetScalarWhereInput!]
+  OR: [BudgetScalarWhereInput!]
+  NOT: [BudgetScalarWhereInput!]
+}
+
+type BudgetSubscriptionPayload {
+  mutation: MutationType!
+  node: Budget
+  updatedFields: [String!]
+  previousValues: BudgetPreviousValues
+}
+
+input BudgetSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: BudgetWhereInput
+  AND: [BudgetSubscriptionWhereInput!]
+  OR: [BudgetSubscriptionWhereInput!]
+  NOT: [BudgetSubscriptionWhereInput!]
+}
+
+input BudgetUpdateInput {
+  amount: Float
+  startDate: DateTime
+  endDate: DateTime
+  category: CategoryUpdateOneRequiredWithoutBudgetsInput
+}
+
+input BudgetUpdateManyDataInput {
+  amount: Float
+  startDate: DateTime
+  endDate: DateTime
+}
+
+input BudgetUpdateManyMutationInput {
+  amount: Float
+  startDate: DateTime
+  endDate: DateTime
+}
+
+input BudgetUpdateManyWithoutCategoryInput {
+  create: [BudgetCreateWithoutCategoryInput!]
+  delete: [BudgetWhereUniqueInput!]
+  connect: [BudgetWhereUniqueInput!]
+  set: [BudgetWhereUniqueInput!]
+  disconnect: [BudgetWhereUniqueInput!]
+  update: [BudgetUpdateWithWhereUniqueWithoutCategoryInput!]
+  upsert: [BudgetUpsertWithWhereUniqueWithoutCategoryInput!]
+  deleteMany: [BudgetScalarWhereInput!]
+  updateMany: [BudgetUpdateManyWithWhereNestedInput!]
+}
+
+input BudgetUpdateManyWithWhereNestedInput {
+  where: BudgetScalarWhereInput!
+  data: BudgetUpdateManyDataInput!
+}
+
+input BudgetUpdateWithoutCategoryDataInput {
+  amount: Float
+  startDate: DateTime
+  endDate: DateTime
+}
+
+input BudgetUpdateWithWhereUniqueWithoutCategoryInput {
+  where: BudgetWhereUniqueInput!
+  data: BudgetUpdateWithoutCategoryDataInput!
+}
+
+input BudgetUpsertWithWhereUniqueWithoutCategoryInput {
+  where: BudgetWhereUniqueInput!
+  update: BudgetUpdateWithoutCategoryDataInput!
+  create: BudgetCreateWithoutCategoryInput!
+}
+
+input BudgetWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  amount: Float
+  amount_not: Float
+  amount_in: [Float!]
+  amount_not_in: [Float!]
+  amount_lt: Float
+  amount_lte: Float
+  amount_gt: Float
+  amount_gte: Float
+  startDate: DateTime
+  startDate_not: DateTime
+  startDate_in: [DateTime!]
+  startDate_not_in: [DateTime!]
+  startDate_lt: DateTime
+  startDate_lte: DateTime
+  startDate_gt: DateTime
+  startDate_gte: DateTime
+  endDate: DateTime
+  endDate_not: DateTime
+  endDate_in: [DateTime!]
+  endDate_not_in: [DateTime!]
+  endDate_lt: DateTime
+  endDate_lte: DateTime
+  endDate_gt: DateTime
+  endDate_gte: DateTime
+  category: CategoryWhereInput
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [BudgetWhereInput!]
+  OR: [BudgetWhereInput!]
+  NOT: [BudgetWhereInput!]
+}
+
+input BudgetWhereUniqueInput {
+  id: ID
+}
+
+type Category {
+  id: ID!
+  user: User!
+  transactions(where: TransactionWhereInput, orderBy: TransactionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Transaction!]
+  icon: Icon!
+  color: String!
+  name: String!
+  priority: Int
+  budgets(where: BudgetWhereInput, orderBy: BudgetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Budget!]
+}
+
+type CategoryConnection {
+  pageInfo: PageInfo!
+  edges: [CategoryEdge]!
+  aggregate: AggregateCategory!
+}
+
+input CategoryCreateInput {
+  id: ID
+  user: UserCreateOneWithoutCategoriesInput!
+  transactions: TransactionCreateManyWithoutCategoryInput
+  icon: IconCreateOneWithoutCategoriesInput!
+  color: String!
+  name: String!
+  priority: Int
+  budgets: BudgetCreateManyWithoutCategoryInput
+}
+
+input CategoryCreateManyWithoutIconInput {
+  create: [CategoryCreateWithoutIconInput!]
+  connect: [CategoryWhereUniqueInput!]
+}
+
+input CategoryCreateManyWithoutUserInput {
+  create: [CategoryCreateWithoutUserInput!]
+  connect: [CategoryWhereUniqueInput!]
+}
+
+input CategoryCreateOneWithoutBudgetsInput {
+  create: CategoryCreateWithoutBudgetsInput
+  connect: CategoryWhereUniqueInput
+}
+
+input CategoryCreateOneWithoutTransactionsInput {
+  create: CategoryCreateWithoutTransactionsInput
+  connect: CategoryWhereUniqueInput
+}
+
+input CategoryCreateWithoutBudgetsInput {
+  id: ID
+  user: UserCreateOneWithoutCategoriesInput!
+  transactions: TransactionCreateManyWithoutCategoryInput
+  icon: IconCreateOneWithoutCategoriesInput!
+  color: String!
+  name: String!
+  priority: Int
+}
+
+input CategoryCreateWithoutIconInput {
+  id: ID
+  user: UserCreateOneWithoutCategoriesInput!
+  transactions: TransactionCreateManyWithoutCategoryInput
+  color: String!
+  name: String!
+  priority: Int
+  budgets: BudgetCreateManyWithoutCategoryInput
+}
+
+input CategoryCreateWithoutTransactionsInput {
+  id: ID
+  user: UserCreateOneWithoutCategoriesInput!
+  icon: IconCreateOneWithoutCategoriesInput!
+  color: String!
+  name: String!
+  priority: Int
+  budgets: BudgetCreateManyWithoutCategoryInput
+}
+
+input CategoryCreateWithoutUserInput {
+  id: ID
+  transactions: TransactionCreateManyWithoutCategoryInput
+  icon: IconCreateOneWithoutCategoriesInput!
+  color: String!
+  name: String!
+  priority: Int
+  budgets: BudgetCreateManyWithoutCategoryInput
+}
+
+type CategoryEdge {
+  node: Category!
+  cursor: String!
+}
+
+enum CategoryOrderByInput {
+  id_ASC
+  id_DESC
+  color_ASC
+  color_DESC
+  name_ASC
+  name_DESC
+  priority_ASC
+  priority_DESC
+}
+
+type CategoryPreviousValues {
+  id: ID!
+  color: String!
+  name: String!
+  priority: Int
+}
+
+input CategoryScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  color: String
+  color_not: String
+  color_in: [String!]
+  color_not_in: [String!]
+  color_lt: String
+  color_lte: String
+  color_gt: String
+  color_gte: String
+  color_contains: String
+  color_not_contains: String
+  color_starts_with: String
+  color_not_starts_with: String
+  color_ends_with: String
+  color_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  priority: Int
+  priority_not: Int
+  priority_in: [Int!]
+  priority_not_in: [Int!]
+  priority_lt: Int
+  priority_lte: Int
+  priority_gt: Int
+  priority_gte: Int
+  AND: [CategoryScalarWhereInput!]
+  OR: [CategoryScalarWhereInput!]
+  NOT: [CategoryScalarWhereInput!]
+}
+
+type CategorySubscriptionPayload {
+  mutation: MutationType!
+  node: Category
+  updatedFields: [String!]
+  previousValues: CategoryPreviousValues
+}
+
+input CategorySubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: CategoryWhereInput
+  AND: [CategorySubscriptionWhereInput!]
+  OR: [CategorySubscriptionWhereInput!]
+  NOT: [CategorySubscriptionWhereInput!]
+}
+
+input CategoryUpdateInput {
+  user: UserUpdateOneRequiredWithoutCategoriesInput
+  transactions: TransactionUpdateManyWithoutCategoryInput
+  icon: IconUpdateOneRequiredWithoutCategoriesInput
+  color: String
+  name: String
+  priority: Int
+  budgets: BudgetUpdateManyWithoutCategoryInput
+}
+
+input CategoryUpdateManyDataInput {
+  color: String
+  name: String
+  priority: Int
+}
+
+input CategoryUpdateManyMutationInput {
+  color: String
+  name: String
+  priority: Int
+}
+
+input CategoryUpdateManyWithoutIconInput {
+  create: [CategoryCreateWithoutIconInput!]
+  delete: [CategoryWhereUniqueInput!]
+  connect: [CategoryWhereUniqueInput!]
+  set: [CategoryWhereUniqueInput!]
+  disconnect: [CategoryWhereUniqueInput!]
+  update: [CategoryUpdateWithWhereUniqueWithoutIconInput!]
+  upsert: [CategoryUpsertWithWhereUniqueWithoutIconInput!]
+  deleteMany: [CategoryScalarWhereInput!]
+  updateMany: [CategoryUpdateManyWithWhereNestedInput!]
+}
+
+input CategoryUpdateManyWithoutUserInput {
+  create: [CategoryCreateWithoutUserInput!]
+  delete: [CategoryWhereUniqueInput!]
+  connect: [CategoryWhereUniqueInput!]
+  set: [CategoryWhereUniqueInput!]
+  disconnect: [CategoryWhereUniqueInput!]
+  update: [CategoryUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [CategoryUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [CategoryScalarWhereInput!]
+  updateMany: [CategoryUpdateManyWithWhereNestedInput!]
+}
+
+input CategoryUpdateManyWithWhereNestedInput {
+  where: CategoryScalarWhereInput!
+  data: CategoryUpdateManyDataInput!
+}
+
+input CategoryUpdateOneRequiredWithoutBudgetsInput {
+  create: CategoryCreateWithoutBudgetsInput
+  update: CategoryUpdateWithoutBudgetsDataInput
+  upsert: CategoryUpsertWithoutBudgetsInput
+  connect: CategoryWhereUniqueInput
+}
+
+input CategoryUpdateOneRequiredWithoutTransactionsInput {
+  create: CategoryCreateWithoutTransactionsInput
+  update: CategoryUpdateWithoutTransactionsDataInput
+  upsert: CategoryUpsertWithoutTransactionsInput
+  connect: CategoryWhereUniqueInput
+}
+
+input CategoryUpdateWithoutBudgetsDataInput {
+  user: UserUpdateOneRequiredWithoutCategoriesInput
+  transactions: TransactionUpdateManyWithoutCategoryInput
+  icon: IconUpdateOneRequiredWithoutCategoriesInput
+  color: String
+  name: String
+  priority: Int
+}
+
+input CategoryUpdateWithoutIconDataInput {
+  user: UserUpdateOneRequiredWithoutCategoriesInput
+  transactions: TransactionUpdateManyWithoutCategoryInput
+  color: String
+  name: String
+  priority: Int
+  budgets: BudgetUpdateManyWithoutCategoryInput
+}
+
+input CategoryUpdateWithoutTransactionsDataInput {
+  user: UserUpdateOneRequiredWithoutCategoriesInput
+  icon: IconUpdateOneRequiredWithoutCategoriesInput
+  color: String
+  name: String
+  priority: Int
+  budgets: BudgetUpdateManyWithoutCategoryInput
+}
+
+input CategoryUpdateWithoutUserDataInput {
+  transactions: TransactionUpdateManyWithoutCategoryInput
+  icon: IconUpdateOneRequiredWithoutCategoriesInput
+  color: String
+  name: String
+  priority: Int
+  budgets: BudgetUpdateManyWithoutCategoryInput
+}
+
+input CategoryUpdateWithWhereUniqueWithoutIconInput {
+  where: CategoryWhereUniqueInput!
+  data: CategoryUpdateWithoutIconDataInput!
+}
+
+input CategoryUpdateWithWhereUniqueWithoutUserInput {
+  where: CategoryWhereUniqueInput!
+  data: CategoryUpdateWithoutUserDataInput!
+}
+
+input CategoryUpsertWithoutBudgetsInput {
+  update: CategoryUpdateWithoutBudgetsDataInput!
+  create: CategoryCreateWithoutBudgetsInput!
+}
+
+input CategoryUpsertWithoutTransactionsInput {
+  update: CategoryUpdateWithoutTransactionsDataInput!
+  create: CategoryCreateWithoutTransactionsInput!
+}
+
+input CategoryUpsertWithWhereUniqueWithoutIconInput {
+  where: CategoryWhereUniqueInput!
+  update: CategoryUpdateWithoutIconDataInput!
+  create: CategoryCreateWithoutIconInput!
+}
+
+input CategoryUpsertWithWhereUniqueWithoutUserInput {
+  where: CategoryWhereUniqueInput!
+  update: CategoryUpdateWithoutUserDataInput!
+  create: CategoryCreateWithoutUserInput!
+}
+
+input CategoryWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  user: UserWhereInput
+  transactions_every: TransactionWhereInput
+  transactions_some: TransactionWhereInput
+  transactions_none: TransactionWhereInput
+  icon: IconWhereInput
+  color: String
+  color_not: String
+  color_in: [String!]
+  color_not_in: [String!]
+  color_lt: String
+  color_lte: String
+  color_gt: String
+  color_gte: String
+  color_contains: String
+  color_not_contains: String
+  color_starts_with: String
+  color_not_starts_with: String
+  color_ends_with: String
+  color_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  priority: Int
+  priority_not: Int
+  priority_in: [Int!]
+  priority_not_in: [Int!]
+  priority_lt: Int
+  priority_lte: Int
+  priority_gt: Int
+  priority_gte: Int
+  budgets_every: BudgetWhereInput
+  budgets_some: BudgetWhereInput
+  budgets_none: BudgetWhereInput
+  AND: [CategoryWhereInput!]
+  OR: [CategoryWhereInput!]
+  NOT: [CategoryWhereInput!]
+}
+
+input CategoryWhereUniqueInput {
+  id: ID
+}
+
+scalar DateTime
+
+type Icon {
+  id: ID!
+  name: String!
+  photo: String!
+  categories(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Category!]
+}
+
+type IconConnection {
+  pageInfo: PageInfo!
+  edges: [IconEdge]!
+  aggregate: AggregateIcon!
+}
+
+input IconCreateInput {
+  id: ID
+  name: String!
+  photo: String!
+  categories: CategoryCreateManyWithoutIconInput
+}
+
+input IconCreateOneWithoutCategoriesInput {
+  create: IconCreateWithoutCategoriesInput
+  connect: IconWhereUniqueInput
+}
+
+input IconCreateWithoutCategoriesInput {
+  id: ID
+  name: String!
+  photo: String!
+}
+
+type IconEdge {
+  node: Icon!
+  cursor: String!
+}
+
+enum IconOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  photo_ASC
+  photo_DESC
+}
+
+type IconPreviousValues {
+  id: ID!
+  name: String!
+  photo: String!
+}
+
+type IconSubscriptionPayload {
+  mutation: MutationType!
+  node: Icon
+  updatedFields: [String!]
+  previousValues: IconPreviousValues
+}
+
+input IconSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: IconWhereInput
+  AND: [IconSubscriptionWhereInput!]
+  OR: [IconSubscriptionWhereInput!]
+  NOT: [IconSubscriptionWhereInput!]
+}
+
+input IconUpdateInput {
+  name: String
+  photo: String
+  categories: CategoryUpdateManyWithoutIconInput
+}
+
+input IconUpdateManyMutationInput {
+  name: String
+  photo: String
+}
+
+input IconUpdateOneRequiredWithoutCategoriesInput {
+  create: IconCreateWithoutCategoriesInput
+  update: IconUpdateWithoutCategoriesDataInput
+  upsert: IconUpsertWithoutCategoriesInput
+  connect: IconWhereUniqueInput
+}
+
+input IconUpdateWithoutCategoriesDataInput {
+  name: String
+  photo: String
+}
+
+input IconUpsertWithoutCategoriesInput {
+  update: IconUpdateWithoutCategoriesDataInput!
+  create: IconCreateWithoutCategoriesInput!
+}
+
+input IconWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  photo: String
+  photo_not: String
+  photo_in: [String!]
+  photo_not_in: [String!]
+  photo_lt: String
+  photo_lte: String
+  photo_gt: String
+  photo_gte: String
+  photo_contains: String
+  photo_not_contains: String
+  photo_starts_with: String
+  photo_not_starts_with: String
+  photo_ends_with: String
+  photo_not_ends_with: String
+  categories_every: CategoryWhereInput
+  categories_some: CategoryWhereInput
+  categories_none: CategoryWhereInput
+  AND: [IconWhereInput!]
+  OR: [IconWhereInput!]
+  NOT: [IconWhereInput!]
+}
+
+input IconWhereUniqueInput {
+  id: ID
+}
+
+scalar Long
+
+type Mutation {
+  createAccount(data: AccountCreateInput!): Account!
+  updateAccount(data: AccountUpdateInput!, where: AccountWhereUniqueInput!): Account
+  updateManyAccounts(data: AccountUpdateManyMutationInput!, where: AccountWhereInput): BatchPayload!
+  upsertAccount(where: AccountWhereUniqueInput!, create: AccountCreateInput!, update: AccountUpdateInput!): Account!
+  deleteAccount(where: AccountWhereUniqueInput!): Account
+  deleteManyAccounts(where: AccountWhereInput): BatchPayload!
+  createBank(data: BankCreateInput!): Bank!
+  updateBank(data: BankUpdateInput!, where: BankWhereUniqueInput!): Bank
+  updateManyBanks(data: BankUpdateManyMutationInput!, where: BankWhereInput): BatchPayload!
+  upsertBank(where: BankWhereUniqueInput!, create: BankCreateInput!, update: BankUpdateInput!): Bank!
+  deleteBank(where: BankWhereUniqueInput!): Bank
+  deleteManyBanks(where: BankWhereInput): BatchPayload!
+  createBudget(data: BudgetCreateInput!): Budget!
+  updateBudget(data: BudgetUpdateInput!, where: BudgetWhereUniqueInput!): Budget
+  updateManyBudgets(data: BudgetUpdateManyMutationInput!, where: BudgetWhereInput): BatchPayload!
+  upsertBudget(where: BudgetWhereUniqueInput!, create: BudgetCreateInput!, update: BudgetUpdateInput!): Budget!
+  deleteBudget(where: BudgetWhereUniqueInput!): Budget
+  deleteManyBudgets(where: BudgetWhereInput): BatchPayload!
+  createCategory(data: CategoryCreateInput!): Category!
+  updateCategory(data: CategoryUpdateInput!, where: CategoryWhereUniqueInput!): Category
+  updateManyCategories(data: CategoryUpdateManyMutationInput!, where: CategoryWhereInput): BatchPayload!
+  upsertCategory(where: CategoryWhereUniqueInput!, create: CategoryCreateInput!, update: CategoryUpdateInput!): Category!
+  deleteCategory(where: CategoryWhereUniqueInput!): Category
+  deleteManyCategories(where: CategoryWhereInput): BatchPayload!
+  createIcon(data: IconCreateInput!): Icon!
+  updateIcon(data: IconUpdateInput!, where: IconWhereUniqueInput!): Icon
+  updateManyIcons(data: IconUpdateManyMutationInput!, where: IconWhereInput): BatchPayload!
+  upsertIcon(where: IconWhereUniqueInput!, create: IconCreateInput!, update: IconUpdateInput!): Icon!
+  deleteIcon(where: IconWhereUniqueInput!): Icon
+  deleteManyIcons(where: IconWhereInput): BatchPayload!
+  createTransaction(data: TransactionCreateInput!): Transaction!
+  updateTransaction(data: TransactionUpdateInput!, where: TransactionWhereUniqueInput!): Transaction
+  updateManyTransactions(data: TransactionUpdateManyMutationInput!, where: TransactionWhereInput): BatchPayload!
+  upsertTransaction(where: TransactionWhereUniqueInput!, create: TransactionCreateInput!, update: TransactionUpdateInput!): Transaction!
+  deleteTransaction(where: TransactionWhereUniqueInput!): Transaction
+  deleteManyTransactions(where: TransactionWhereInput): BatchPayload!
+  createUser(data: UserCreateInput!): User!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Query {
+  account(where: AccountWhereUniqueInput!): Account
+  accounts(where: AccountWhereInput, orderBy: AccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Account]!
+  accountsConnection(where: AccountWhereInput, orderBy: AccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AccountConnection!
+  bank(where: BankWhereUniqueInput!): Bank
+  banks(where: BankWhereInput, orderBy: BankOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Bank]!
+  banksConnection(where: BankWhereInput, orderBy: BankOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BankConnection!
+  budget(where: BudgetWhereUniqueInput!): Budget
+  budgets(where: BudgetWhereInput, orderBy: BudgetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Budget]!
+  budgetsConnection(where: BudgetWhereInput, orderBy: BudgetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BudgetConnection!
+  category(where: CategoryWhereUniqueInput!): Category
+  categories(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Category]!
+  categoriesConnection(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CategoryConnection!
+  icon(where: IconWhereUniqueInput!): Icon
+  icons(where: IconWhereInput, orderBy: IconOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Icon]!
+  iconsConnection(where: IconWhereInput, orderBy: IconOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): IconConnection!
+  transaction(where: TransactionWhereUniqueInput!): Transaction
+  transactions(where: TransactionWhereInput, orderBy: TransactionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Transaction]!
+  transactionsConnection(where: TransactionWhereInput, orderBy: TransactionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TransactionConnection!
+  user(where: UserWhereUniqueInput!): User
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  node(id: ID!): Node
+}
+
+type Subscription {
+  account(where: AccountSubscriptionWhereInput): AccountSubscriptionPayload
+  bank(where: BankSubscriptionWhereInput): BankSubscriptionPayload
+  budget(where: BudgetSubscriptionWhereInput): BudgetSubscriptionPayload
+  category(where: CategorySubscriptionWhereInput): CategorySubscriptionPayload
+  icon(where: IconSubscriptionWhereInput): IconSubscriptionPayload
+  transaction(where: TransactionSubscriptionWhereInput): TransactionSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+type Transaction {
+  id: ID!
+  account: Account!
+  category: Category!
+  amount: Float!
+  info: String
+  approved: DateTime
+  accountingDate: DateTime
+  isReservation: Boolean
+  type: String
+  typeCode: Int
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+type TransactionConnection {
+  pageInfo: PageInfo!
+  edges: [TransactionEdge]!
+  aggregate: AggregateTransaction!
+}
+
+input TransactionCreateInput {
+  id: ID
+  account: AccountCreateOneWithoutTransactionsInput!
+  category: CategoryCreateOneWithoutTransactionsInput!
+  amount: Float!
+  info: String
+  approved: DateTime
+  accountingDate: DateTime
+  isReservation: Boolean
+  type: String
+  typeCode: Int
+}
+
+input TransactionCreateManyWithoutAccountInput {
+  create: [TransactionCreateWithoutAccountInput!]
+  connect: [TransactionWhereUniqueInput!]
+}
+
+input TransactionCreateManyWithoutCategoryInput {
+  create: [TransactionCreateWithoutCategoryInput!]
+  connect: [TransactionWhereUniqueInput!]
+}
+
+input TransactionCreateWithoutAccountInput {
+  id: ID
+  category: CategoryCreateOneWithoutTransactionsInput!
+  amount: Float!
+  info: String
+  approved: DateTime
+  accountingDate: DateTime
+  isReservation: Boolean
+  type: String
+  typeCode: Int
+}
+
+input TransactionCreateWithoutCategoryInput {
+  id: ID
+  account: AccountCreateOneWithoutTransactionsInput!
+  amount: Float!
+  info: String
+  approved: DateTime
+  accountingDate: DateTime
+  isReservation: Boolean
+  type: String
+  typeCode: Int
+}
+
+type TransactionEdge {
+  node: Transaction!
+  cursor: String!
+}
+
+enum TransactionOrderByInput {
+  id_ASC
+  id_DESC
+  amount_ASC
+  amount_DESC
+  info_ASC
+  info_DESC
+  approved_ASC
+  approved_DESC
+  accountingDate_ASC
+  accountingDate_DESC
+  isReservation_ASC
+  isReservation_DESC
+  type_ASC
+  type_DESC
+  typeCode_ASC
+  typeCode_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type TransactionPreviousValues {
+  id: ID!
+  amount: Float!
+  info: String
+  approved: DateTime
+  accountingDate: DateTime
+  isReservation: Boolean
+  type: String
+  typeCode: Int
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+input TransactionScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  amount: Float
+  amount_not: Float
+  amount_in: [Float!]
+  amount_not_in: [Float!]
+  amount_lt: Float
+  amount_lte: Float
+  amount_gt: Float
+  amount_gte: Float
+  info: String
+  info_not: String
+  info_in: [String!]
+  info_not_in: [String!]
+  info_lt: String
+  info_lte: String
+  info_gt: String
+  info_gte: String
+  info_contains: String
+  info_not_contains: String
+  info_starts_with: String
+  info_not_starts_with: String
+  info_ends_with: String
+  info_not_ends_with: String
+  approved: DateTime
+  approved_not: DateTime
+  approved_in: [DateTime!]
+  approved_not_in: [DateTime!]
+  approved_lt: DateTime
+  approved_lte: DateTime
+  approved_gt: DateTime
+  approved_gte: DateTime
+  accountingDate: DateTime
+  accountingDate_not: DateTime
+  accountingDate_in: [DateTime!]
+  accountingDate_not_in: [DateTime!]
+  accountingDate_lt: DateTime
+  accountingDate_lte: DateTime
+  accountingDate_gt: DateTime
+  accountingDate_gte: DateTime
+  isReservation: Boolean
+  isReservation_not: Boolean
+  type: String
+  type_not: String
+  type_in: [String!]
+  type_not_in: [String!]
+  type_lt: String
+  type_lte: String
+  type_gt: String
+  type_gte: String
+  type_contains: String
+  type_not_contains: String
+  type_starts_with: String
+  type_not_starts_with: String
+  type_ends_with: String
+  type_not_ends_with: String
+  typeCode: Int
+  typeCode_not: Int
+  typeCode_in: [Int!]
+  typeCode_not_in: [Int!]
+  typeCode_lt: Int
+  typeCode_lte: Int
+  typeCode_gt: Int
+  typeCode_gte: Int
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [TransactionScalarWhereInput!]
+  OR: [TransactionScalarWhereInput!]
+  NOT: [TransactionScalarWhereInput!]
+}
+
+type TransactionSubscriptionPayload {
+  mutation: MutationType!
+  node: Transaction
+  updatedFields: [String!]
+  previousValues: TransactionPreviousValues
+}
+
+input TransactionSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: TransactionWhereInput
+  AND: [TransactionSubscriptionWhereInput!]
+  OR: [TransactionSubscriptionWhereInput!]
+  NOT: [TransactionSubscriptionWhereInput!]
+}
+
+input TransactionUpdateInput {
+  account: AccountUpdateOneRequiredWithoutTransactionsInput
+  category: CategoryUpdateOneRequiredWithoutTransactionsInput
+  amount: Float
+  info: String
+  approved: DateTime
+  accountingDate: DateTime
+  isReservation: Boolean
+  type: String
+  typeCode: Int
+}
+
+input TransactionUpdateManyDataInput {
+  amount: Float
+  info: String
+  approved: DateTime
+  accountingDate: DateTime
+  isReservation: Boolean
+  type: String
+  typeCode: Int
+}
+
+input TransactionUpdateManyMutationInput {
+  amount: Float
+  info: String
+  approved: DateTime
+  accountingDate: DateTime
+  isReservation: Boolean
+  type: String
+  typeCode: Int
+}
+
+input TransactionUpdateManyWithoutAccountInput {
+  create: [TransactionCreateWithoutAccountInput!]
+  delete: [TransactionWhereUniqueInput!]
+  connect: [TransactionWhereUniqueInput!]
+  set: [TransactionWhereUniqueInput!]
+  disconnect: [TransactionWhereUniqueInput!]
+  update: [TransactionUpdateWithWhereUniqueWithoutAccountInput!]
+  upsert: [TransactionUpsertWithWhereUniqueWithoutAccountInput!]
+  deleteMany: [TransactionScalarWhereInput!]
+  updateMany: [TransactionUpdateManyWithWhereNestedInput!]
+}
+
+input TransactionUpdateManyWithoutCategoryInput {
+  create: [TransactionCreateWithoutCategoryInput!]
+  delete: [TransactionWhereUniqueInput!]
+  connect: [TransactionWhereUniqueInput!]
+  set: [TransactionWhereUniqueInput!]
+  disconnect: [TransactionWhereUniqueInput!]
+  update: [TransactionUpdateWithWhereUniqueWithoutCategoryInput!]
+  upsert: [TransactionUpsertWithWhereUniqueWithoutCategoryInput!]
+  deleteMany: [TransactionScalarWhereInput!]
+  updateMany: [TransactionUpdateManyWithWhereNestedInput!]
+}
+
+input TransactionUpdateManyWithWhereNestedInput {
+  where: TransactionScalarWhereInput!
+  data: TransactionUpdateManyDataInput!
+}
+
+input TransactionUpdateWithoutAccountDataInput {
+  category: CategoryUpdateOneRequiredWithoutTransactionsInput
+  amount: Float
+  info: String
+  approved: DateTime
+  accountingDate: DateTime
+  isReservation: Boolean
+  type: String
+  typeCode: Int
+}
+
+input TransactionUpdateWithoutCategoryDataInput {
+  account: AccountUpdateOneRequiredWithoutTransactionsInput
+  amount: Float
+  info: String
+  approved: DateTime
+  accountingDate: DateTime
+  isReservation: Boolean
+  type: String
+  typeCode: Int
+}
+
+input TransactionUpdateWithWhereUniqueWithoutAccountInput {
+  where: TransactionWhereUniqueInput!
+  data: TransactionUpdateWithoutAccountDataInput!
+}
+
+input TransactionUpdateWithWhereUniqueWithoutCategoryInput {
+  where: TransactionWhereUniqueInput!
+  data: TransactionUpdateWithoutCategoryDataInput!
+}
+
+input TransactionUpsertWithWhereUniqueWithoutAccountInput {
+  where: TransactionWhereUniqueInput!
+  update: TransactionUpdateWithoutAccountDataInput!
+  create: TransactionCreateWithoutAccountInput!
+}
+
+input TransactionUpsertWithWhereUniqueWithoutCategoryInput {
+  where: TransactionWhereUniqueInput!
+  update: TransactionUpdateWithoutCategoryDataInput!
+  create: TransactionCreateWithoutCategoryInput!
+}
+
+input TransactionWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  account: AccountWhereInput
+  category: CategoryWhereInput
+  amount: Float
+  amount_not: Float
+  amount_in: [Float!]
+  amount_not_in: [Float!]
+  amount_lt: Float
+  amount_lte: Float
+  amount_gt: Float
+  amount_gte: Float
+  info: String
+  info_not: String
+  info_in: [String!]
+  info_not_in: [String!]
+  info_lt: String
+  info_lte: String
+  info_gt: String
+  info_gte: String
+  info_contains: String
+  info_not_contains: String
+  info_starts_with: String
+  info_not_starts_with: String
+  info_ends_with: String
+  info_not_ends_with: String
+  approved: DateTime
+  approved_not: DateTime
+  approved_in: [DateTime!]
+  approved_not_in: [DateTime!]
+  approved_lt: DateTime
+  approved_lte: DateTime
+  approved_gt: DateTime
+  approved_gte: DateTime
+  accountingDate: DateTime
+  accountingDate_not: DateTime
+  accountingDate_in: [DateTime!]
+  accountingDate_not_in: [DateTime!]
+  accountingDate_lt: DateTime
+  accountingDate_lte: DateTime
+  accountingDate_gt: DateTime
+  accountingDate_gte: DateTime
+  isReservation: Boolean
+  isReservation_not: Boolean
+  type: String
+  type_not: String
+  type_in: [String!]
+  type_not_in: [String!]
+  type_lt: String
+  type_lte: String
+  type_gt: String
+  type_gte: String
+  type_contains: String
+  type_not_contains: String
+  type_starts_with: String
+  type_not_starts_with: String
+  type_ends_with: String
+  type_not_ends_with: String
+  typeCode: Int
+  typeCode_not: Int
+  typeCode_in: [Int!]
+  typeCode_not_in: [Int!]
+  typeCode_lt: Int
+  typeCode_lte: Int
+  typeCode_gt: Int
+  typeCode_gte: Int
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [TransactionWhereInput!]
+  OR: [TransactionWhereInput!]
+  NOT: [TransactionWhereInput!]
+}
+
+input TransactionWhereUniqueInput {
+  id: ID
+}
+
+type User {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  email: String!
+  password: String!
+  resetToken: String
+  tokenValidUntil: DateTime
+  updatedAt: DateTime!
+  createdAt: DateTime!
+  accounts(where: AccountWhereInput, orderBy: AccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Account!]
+  categories(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Category!]
+}
+
+type UserConnection {
+  pageInfo: PageInfo!
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  id: ID
+  firstName: String!
+  lastName: String!
+  email: String!
+  password: String!
+  resetToken: String
+  tokenValidUntil: DateTime
+  accounts: AccountCreateManyWithoutOwnerInput
+  categories: CategoryCreateManyWithoutUserInput
+}
+
+input UserCreateOneWithoutAccountsInput {
+  create: UserCreateWithoutAccountsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutCategoriesInput {
+  create: UserCreateWithoutCategoriesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutAccountsInput {
+  id: ID
+  firstName: String!
+  lastName: String!
+  email: String!
+  password: String!
+  resetToken: String
+  tokenValidUntil: DateTime
+  categories: CategoryCreateManyWithoutUserInput
+}
+
+input UserCreateWithoutCategoriesInput {
+  id: ID
+  firstName: String!
+  lastName: String!
+  email: String!
+  password: String!
+  resetToken: String
+  tokenValidUntil: DateTime
+  accounts: AccountCreateManyWithoutOwnerInput
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  firstName_ASC
+  firstName_DESC
+  lastName_ASC
+  lastName_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
+  resetToken_ASC
+  resetToken_DESC
+  tokenValidUntil_ASC
+  tokenValidUntil_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  email: String!
+  password: String!
+  resetToken: String
+  tokenValidUntil: DateTime
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+  AND: [UserSubscriptionWhereInput!]
+  OR: [UserSubscriptionWhereInput!]
+  NOT: [UserSubscriptionWhereInput!]
+}
+
+input UserUpdateInput {
+  firstName: String
+  lastName: String
+  email: String
+  password: String
+  resetToken: String
+  tokenValidUntil: DateTime
+  accounts: AccountUpdateManyWithoutOwnerInput
+  categories: CategoryUpdateManyWithoutUserInput
+}
+
+input UserUpdateManyMutationInput {
+  firstName: String
+  lastName: String
+  email: String
+  password: String
+  resetToken: String
+  tokenValidUntil: DateTime
+}
+
+input UserUpdateOneRequiredWithoutAccountsInput {
+  create: UserCreateWithoutAccountsInput
+  update: UserUpdateWithoutAccountsDataInput
+  upsert: UserUpsertWithoutAccountsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneRequiredWithoutCategoriesInput {
+  create: UserCreateWithoutCategoriesInput
+  update: UserUpdateWithoutCategoriesDataInput
+  upsert: UserUpsertWithoutCategoriesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateWithoutAccountsDataInput {
+  firstName: String
+  lastName: String
+  email: String
+  password: String
+  resetToken: String
+  tokenValidUntil: DateTime
+  categories: CategoryUpdateManyWithoutUserInput
+}
+
+input UserUpdateWithoutCategoriesDataInput {
+  firstName: String
+  lastName: String
+  email: String
+  password: String
+  resetToken: String
+  tokenValidUntil: DateTime
+  accounts: AccountUpdateManyWithoutOwnerInput
+}
+
+input UserUpsertWithoutAccountsInput {
+  update: UserUpdateWithoutAccountsDataInput!
+  create: UserCreateWithoutAccountsInput!
+}
+
+input UserUpsertWithoutCategoriesInput {
+  update: UserUpdateWithoutCategoriesDataInput!
+  create: UserCreateWithoutCategoriesInput!
+}
+
+input UserWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  firstName: String
+  firstName_not: String
+  firstName_in: [String!]
+  firstName_not_in: [String!]
+  firstName_lt: String
+  firstName_lte: String
+  firstName_gt: String
+  firstName_gte: String
+  firstName_contains: String
+  firstName_not_contains: String
+  firstName_starts_with: String
+  firstName_not_starts_with: String
+  firstName_ends_with: String
+  firstName_not_ends_with: String
+  lastName: String
+  lastName_not: String
+  lastName_in: [String!]
+  lastName_not_in: [String!]
+  lastName_lt: String
+  lastName_lte: String
+  lastName_gt: String
+  lastName_gte: String
+  lastName_contains: String
+  lastName_not_contains: String
+  lastName_starts_with: String
+  lastName_not_starts_with: String
+  lastName_ends_with: String
+  lastName_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  resetToken: String
+  resetToken_not: String
+  resetToken_in: [String!]
+  resetToken_not_in: [String!]
+  resetToken_lt: String
+  resetToken_lte: String
+  resetToken_gt: String
+  resetToken_gte: String
+  resetToken_contains: String
+  resetToken_not_contains: String
+  resetToken_starts_with: String
+  resetToken_not_starts_with: String
+  resetToken_ends_with: String
+  resetToken_not_ends_with: String
+  tokenValidUntil: DateTime
+  tokenValidUntil_not: DateTime
+  tokenValidUntil_in: [DateTime!]
+  tokenValidUntil_not_in: [DateTime!]
+  tokenValidUntil_lt: DateTime
+  tokenValidUntil_lte: DateTime
+  tokenValidUntil_gt: DateTime
+  tokenValidUntil_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  accounts_every: AccountWhereInput
+  accounts_some: AccountWhereInput
+  accounts_none: AccountWhereInput
+  categories_every: CategoryWhereInput
+  categories_some: CategoryWhereInput
+  categories_none: CategoryWhereInput
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  email: String
+}
