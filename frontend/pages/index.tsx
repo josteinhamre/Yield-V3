@@ -1,4 +1,4 @@
 import React from "react";
-import TransactionList from "../components/TransactionsList";
+import Signup from "../components/Signup";
 
-export default TransactionList;
+export default Signup;
