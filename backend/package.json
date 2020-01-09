@@ -3,22 +3,50 @@
   "version": "1.0.0",
   "description": "Yield-V3 Backend of a Personal budgeting app, using TypeScript, Prisma and GraphQL-Yoga",
   "scripts": {
-    "dev": ""
+    "start": "node --inspect -r ts-node/register ./src/index.ts",
+    "start:watch": "nodemon",
+    "build": "tsc",
+    "old": "tsc && node dist/src/index.js"
   },
   "author": "Jostein Hamre",
   "license": "MIT",
   "dependencies": {
-    "apollo-server": "^2.9.13",
+    "@types/dotenv": "^8.2.0",
+    "@types/jsonwebtoken": "^8.3.5",
+    "@types/node": "^13.1.5",
+    "apollo-server-express": "^2.9.15",
+    "argon2": "^0.25.1",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
     "csv-parser": "^2.3.2",
     "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
+    "express": "^4.17.1",
     "graphql": "^14.5.8",
     "graphql-import": "^0.7.1",
+    "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
+    "nodemon": "^2.0.2",
     "prisma": "^1.34.10",
     "prisma-binding": "^2.3.16",
+    "ts-node": "^8.5.4",
     "typescript": "^3.7.3"
   },
   "devDependencies": {
     "tslint-config-airbnb": "^5.11.2"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      ".git",
+      "node_modules"
+    ],
+    "watch": [
+      "src",
+      "types"
+    ],
+    "exec": "npm start",
+    "ext": "ts"
   }
 }

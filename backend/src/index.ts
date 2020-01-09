@@ -1,5 +1,9 @@
-import server from "./createServer";
+import { config } from "dotenv";
 
-server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
-});
+config();
+
+import app from "./createServer";
+
+app.listen({ port: 4000 }, () =>
+  console.log(`🚀 Server ready at http://localhost:4000`),
+);

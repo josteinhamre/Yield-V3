@@ -1,5 +1,8 @@
+import { config } from "dotenv";
 import { Prisma } from "prisma-binding";
 import { typeDefs } from "../generated/prisma-client/prisma-schema";
+
+config();
 
 const db = new Prisma({
   debug: true,

@@ -47,6 +47,16 @@ var Query = {
             });
         });
     },
+    transactions: function (parent, args, ctx, info) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, ctx.db.query.transactions({}, info)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    },
 };
 exports.default = Query;
 //# sourceMappingURL=Query.js.map

@@ -2,6 +2,9 @@ const Query = {
   async users(parent, args, ctx, info) {
     return await ctx.db.query.users({}, info);
   },
+  async transactions(parent, args, ctx, info) {
+    return await ctx.db.query.transactions({}, info);
+  },
 };
 
 export default Query;
