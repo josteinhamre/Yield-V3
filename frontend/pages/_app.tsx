@@ -8,7 +8,7 @@ import React from "react";
 import Page from "../components/Page";
 import GlobalStyle from "../components/styles/GlobalStyle";
 
-const link = createHttpLink({ fetch: fetch as any, uri: "http://localhost:4466/" });
+const link = createHttpLink({ fetch: fetch as any, uri: "http://localhost:4000" });
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),

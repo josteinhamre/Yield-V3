@@ -14,7 +14,7 @@ const Mutation = {
       },
     }, info);
 
-    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET || "secret");
 
     ctx.res.cookie("token", token, {
       httpOnly: true,

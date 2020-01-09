@@ -60,13 +60,6 @@ const StyledTransactionsList = styled.div`
 
 `;
 
-const trasactionData = {
-  amount: -299.00,
-  category: "Gift",
-  date: "Wed 9 Oct 15:30",
-  info: "Tanum Bokhandel Storo Stors Oslo",
-};
-
 const TransactionList = () => {
   const { loading, error, data } = useQuery<ITransactions>(
     ALL_TRANSACTIONS_QUERY,

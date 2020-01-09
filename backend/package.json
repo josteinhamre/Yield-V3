@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Yield-V3 Backend of a Personal budgeting app, using TypeScript, Prisma and GraphQL-Yoga",
   "scripts": {
+    "dev": "nodemon -e js,graphql -x node --inspect dist/src/index.js",
     "start": "node --inspect -r ts-node/register ./src/index.ts",
     "start:watch": "nodemon",
     "build": "tsc",
