@@ -15,9 +15,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var apollo_server_express_1 = require("apollo-server-express");
-var cookie_parser_1 = __importDefault(require("cookie-parser"));
 var cors_1 = __importDefault(require("cors"));
 var express_1 = __importDefault(require("express"));
+var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var db_1 = __importDefault(require("./db"));
 var Mutation_1 = __importDefault(require("./resolvers/Mutation"));
 var Query_1 = __importDefault(require("./resolvers/Query"));
@@ -40,7 +40,15 @@ var corsOptions = {
     origin: "http://localhost:3000",
 };
 app.use(cors_1.default(corsOptions));
+app.use(function (req, res, next) {
+    var token = req.cookies.token;
+    if (token) {
+        var decoded = jsonwebtoken_1.default.verify(token, process.env.APP_SECRET || "secret");
+        req.userId = decoded.userId;
+    }
+    console.log("req:", req);
+    next();
+});
 server.applyMiddleware({ app: app, path: path });
-app.use(cookie_parser_1.default());
 exports.default = app;
 //# sourceMappingURL=createServer.js.map

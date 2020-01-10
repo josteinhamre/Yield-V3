@@ -37,11 +37,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var Query = {
-    users: function (parent, args, ctx, info) {
+    me: function (parent, args, ctx, info) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, ctx.db.query.users({}, info)];
+                    case 0:
+                        if (ctx.request.userId) {
+                            return [2 /*return*/, null];
+                        }
+                        return [4 /*yield*/, ctx.db.query.user({ where: { id: ctx.request.userId } }, info)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
