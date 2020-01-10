@@ -68,7 +68,7 @@ var Mutation = {
                             }, info)];
                     case 2:
                         user = _a.sent();
-                        token = jsonwebtoken_1.default.sign({ userId: user.id }, process.env.APP_SECRET);
+                        token = jsonwebtoken_1.default.sign({ userId: user.id }, process.env.APP_SECRET || "secret");
                         ctx.res.cookie("token", token, {
                             httpOnly: true,
                             maxAge: 1000 * 60 * 60 * 24 * 365,
