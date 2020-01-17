@@ -1,6 +1,8 @@
 import React from "react";
+import { useContext } from "react";
 import styled from "styled-components";
 import Category from "./Category";
+import { UserStore } from "./UserContext";
 
 const StyledTransaction = styled.div`
   display: grid;
@@ -42,13 +44,15 @@ interface ITransactions {
   transaction: ITransaction;
 }
 
-const TransactionItem: React.FC<ITransactions> = (props) => (
-  <StyledTransaction>
-    <Category category={props.transaction.category} />
-    <p>{new Date(props.transaction.accountingDate).toLocaleString("no-no", { weekday: "short", year: "2-digit", month: "short", day: "2-digit" })}</p>
-    < p > {props.transaction.info}</p>
-    <p>{props.transaction.amount}</p>
-  </StyledTransaction>
-);
+const TransactionItem: React.FC<ITransactions> = (props) => {
+  return (
+    <StyledTransaction>
+      <Category category={props.transaction.category} />
+      <p>{new Date(props.transaction.accountingDate).toLocaleString("no-no", { weekday: "short", year: "2-digit", month: "short", day: "2-digit" })}</p>
+      <p> {props.transaction.info}</p>
+      <p>{props.transaction.amount}</p>
+    </StyledTransaction>
+  );
+};
 
 export default TransactionItem;
