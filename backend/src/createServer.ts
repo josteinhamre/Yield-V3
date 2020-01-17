@@ -55,6 +55,7 @@ app.use(async (req: Request, res, next) => {
   if (!req.userId) { return next(); }
   const user = await db.query.user({ where: { id: req.userId } }, "{id, email, firstName, lastName}");
   req.user = user;
+  next();
 });
 
 server.applyMiddleware({

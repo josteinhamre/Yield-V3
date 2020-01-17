@@ -66,7 +66,6 @@ const TransactionList = () => {
   );
   if (loading) { <p>Loading...</p>; }
   if (error) { <p>Error...</p>; }
-
   return (
     <>
       <StyledTransactionsList>

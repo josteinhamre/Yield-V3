@@ -14,7 +14,7 @@ type User {
 type Query {
   users: [User]
   transactions: [Transaction]
-  me(id: String!): User!
+  me: User!
 }
 
 type Mutation {
