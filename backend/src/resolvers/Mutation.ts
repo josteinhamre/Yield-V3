@@ -23,6 +23,29 @@ const Mutation = {
 
     return user;
   },
+
+  async signin(parent, { email, password }, ctx, info) {
+    email = email.toLowerCase();
+
+    const user = await ctx.db.query.user({ where: { email } });
+
+    try {
+      if (!await argon2.verify(user.password, password)) {
+        throw new Error("Invalid password");
+      }
+    } catch (err) {
+      throw new Error("Internal error");
+    }
+
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET || "secret");
+
+    ctx.res.cookie("token", token, {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 365,
+    });
+
+    return user;
+  },
 };
 
 export default Mutation;

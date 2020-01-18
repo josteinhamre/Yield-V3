@@ -69,4 +69,4 @@ function UserContext({ children }: JSX.ElementChildrenAttribute): JSX.Element {
 }
 
 export default UserContext;
-export { UserStore };
+export { UserStore, CURRENT_USER_QUERY };

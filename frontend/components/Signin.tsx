@@ -5,9 +5,9 @@ import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { CURRENT_USER_QUERY } from "../components/UserContext";
 
-const SIGNUP_MUTATION = gql`
-  mutation SIGNUP_MUTATION($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
-    signup(firstName: $firstName, lastName: $lastName, email: $email, password: $password, ) {
+const SIGNIN_MUTATION = gql`
+  mutation SIGNIN_MUTATION($email: String!, $password: String!) {
+    signin(email: $email, password: $password) {
       id
       email
       firstName
@@ -68,7 +68,7 @@ interface IUser {
 const Signup = () => {
   const { register, handleSubmit } = useForm();
   const [signup, { loading, error, data }] = useMutation<IUser>(
-    SIGNUP_MUTATION,
+    SIGNIN_MUTATION,
     { refetchQueries: [{ query: CURRENT_USER_QUERY }] },
   );
   if (loading) { <p>Loading...</p>; }
@@ -88,16 +88,6 @@ const Signup = () => {
     <>
       <StyledUserForm>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="firstName">First name</label>
-              <input type="text" name="firstName" placeholder="First name" ref={register} />
-            </div>
-            <div className="form-group">
-              <label htmlFor="lastName">Last name</label>
-              <input type="text" name="lastName" placeholder="Last name" ref={register} />
-            </div>
-          </div>
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input type="email" name="email" placeholder="email@email.com" ref={register} />

@@ -1,8 +1,6 @@
 import React from "react";
-import { useContext } from "react";
 import styled from "styled-components";
 import Category from "./Category";
-import { UserStore } from "./UserContext";
 
 const StyledTransaction = styled.div`
   display: grid;
