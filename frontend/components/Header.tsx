@@ -1,11 +1,13 @@
 import { useContext } from "react";
-import { UserStore } from "./UserContext";
+import { IState } from "../Interfaces";
+import { Context } from "./Context";
 
 const Header = () => {
 
-  const State = useContext(UserStore);
+  const { state, dispatch } = useContext(Context);
+  if (!state.me) { return (<h1>Hello</h1>); }
   return (
-    <h1>{State.firstName}{State.lastName}</h1>
+    <h1>{state.me.firstName}{state.me.lastName}</h1>
   );
 };
 

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import styled, { ThemeProvider } from "styled-components";
+import ContextComponent from "./Context";
 import Header from "./Header";
 import Meta from "./Meta";
-import UserContext from "./UserContext";
+import User from "./User";
 
 const theme = {
   black: "#393939",
@@ -27,13 +28,15 @@ class Page extends React.Component {
   public render() {
     return (
       <ThemeProvider theme={theme}>
-        <UserContext>
-          <StyledPage>
-            <Meta />
-            <Header />
-            <Inner>{this.props.children}</Inner>
-          </StyledPage>
-        </UserContext>
+        <ContextComponent>
+          <User>
+            <StyledPage>
+              <Meta />
+              <Header />
+              <Inner>{this.props.children}</Inner>
+            </StyledPage>
+          </User>
+        </ContextComponent>
       </ThemeProvider>
     );
   }
