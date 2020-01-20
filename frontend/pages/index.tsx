@@ -1,13 +1,13 @@
 import React from "react";
 import { useContext } from "react";
+import { Context } from "../components/Context";
 import Signin from "../components/Signin";
 import Signup from "../components/Signup";
 import TransactionsList from "../components/TransactionsList";
-import { UserStore } from "../components/UserContext";
 
 const Index = () => {
-  const State = useContext(UserStore);
-  if (State.id === "") {
+  const { state, dispatch } = useContext(Context);
+  if (!state.me) {
     return (
       <>
         <Signup />

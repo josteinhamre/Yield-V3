@@ -3,7 +3,7 @@ import gql from "graphql-tag";
 import React from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
-import { CURRENT_USER_QUERY } from "../components/UserContext";
+import { CURRENT_USER_QUERY } from "../components/User";
 
 const SIGNUP_MUTATION = gql`
   mutation SIGNUP_MUTATION($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
