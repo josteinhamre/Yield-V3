@@ -5,11 +5,6 @@ const initialState: IState = {
   me: undefined,
 };
 
-const initialAction: IAction = {
-  instruction: "nothing",
-  newState: initialState,
-};
-
 const initialContext: IContext = {
   dispatch: () => { },
   state: initialState,
