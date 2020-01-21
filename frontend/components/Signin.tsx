@@ -2,7 +2,8 @@ import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import React from "react";
 import { useForm } from "react-hook-form";
-import styled from "styled-components";
+import { IUser } from "../Interfaces";
+import StyledUserForm from "./styles/UserForm";
 import { CURRENT_USER_QUERY } from "./User";
 
 const SIGNIN_MUTATION = gql`
@@ -16,69 +17,16 @@ const SIGNIN_MUTATION = gql`
   }
 `;
 
-const StyledUserForm = styled.div`
-
-  form {
-    display: flex;
-    flex-direction: column;
-    padding: 1em;
-  }
-
-  label {
-    font-weight: bold;
-    font-size: 0.8em;
-  }
-
-  input {
-    font-size: 1.3em;
-    padding: 0.3em;
-    border-radius: 0.2em;
-    border: 0.05em solid lightgrey;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    margin: 0.5em;
-  }
-
-  .form-row {
-    display: flex;
-  }
-
-  .form-submit {
-    margin: 0.5em;
-    padding: 0.3em 0;
-    width: 30%;
-    font-size: 1.3em;
-    align-self: flex-end;
-    border-radius: 0.2em;
-    border: 0.05em solid lightgrey;
-  }
-`;
-
-interface IUser {
-  id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-}
-
-const Signup = () => {
+const Signin = () => {
   const { register, handleSubmit } = useForm();
-  const [signup, { loading, error, data }] = useMutation<IUser>(
+  const [signin, { loading, error, data }] = useMutation<IUser>(
     SIGNIN_MUTATION,
     { refetchQueries: [{ query: CURRENT_USER_QUERY }] },
   );
-  if (loading) { <p>Loading...</p>; }
-  if (error) { <p>Error...</p>; }
   const onSubmit = async (formData: any) => {
-    await signup({
+    await signin({
       variables: {
         email: formData.email,
-        firstName: formData.firstName,
-        lastName: formData.lastName,
         password: formData.password,
       },
     });
@@ -90,17 +38,17 @@ const Signup = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
             <label htmlFor="email">Email</label>
-            <input type="email" name="email" placeholder="email@email.com" ref={register} />
+            <input type="email" name="email" placeholder="email@email.com" ref={register} autoComplete="current-email username" />
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <input type="password" name="password" placeholder="8 Characters" ref={register} />
+            <input type="password" name="password" placeholder="8 Characters" ref={register} autoComplete="current-password" />
           </div>
-          <button type="submit" className="form-submit" >Submit</button>
+          <button type="submit" className="form-submit" title="Submit">Submit</button>
         </form>
       </StyledUserForm>
     </>
   );
 };
 
-export default Signup;
+export default Signin;

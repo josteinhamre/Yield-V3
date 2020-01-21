@@ -46,6 +46,11 @@ const Mutation = {
 
     return user;
   },
+
+  async signout(parent, args, ctx, info) {
+    ctx.res.clearCookie("token");
+    return true;
+  },
 };
 
 export default Mutation;

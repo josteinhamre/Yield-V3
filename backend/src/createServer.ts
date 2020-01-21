@@ -41,13 +41,11 @@ declare module "express-serve-static-core" {
 app.use(cookieParser());
 // Decodes Cookie and ads the UserId to the request.
 app.use((req: Request, res, next) => {
-  console.log("req:", req.cookies.token);
   const { token } = req.cookies;
   if (token) {
     const decoded = jwt.verify(token, process.env.APP_SECRET || "secret") as IDecoded;
     req.userId = decoded.userId;
   }
-  console.log("req:", req.userId);
   next();
 });
 
