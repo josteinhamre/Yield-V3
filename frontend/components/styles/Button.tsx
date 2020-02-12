@@ -1,16 +1,18 @@
 import styled from "styled-components";
+import { theme } from "../Page";
 
 const StyledButton = styled.button`
-  margin: 0.5em;
-  padding: 0.3em 3em;
-  font-size: 1.3em;
-  border-radius: 0.2em;
-  border: 0.05em solid lightgrey;
+  padding: 0.5rem 3rem;
+  font-size: 1rem;
+  border-radius: 0.2rem;
+  border: 0.05rem solid #9099AD;
   cursor: pointer;
+  background: #51607F;
+  color: #60E2A1;
 
   :hover {
     font-weight: bold;
-    border: 0.05em solid darkgray;
+    border: 0.05rem solid darkgray;
   }
 
   :after {

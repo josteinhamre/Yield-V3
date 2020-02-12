@@ -9,7 +9,11 @@ const Header = () => {
   if (!state.me) { return (<h1>Hello</h1>); }
   return (
     <StyledHeader>
-      <h1>{state.me.firstName}{state.me.lastName}</h1>
+      <h1>Yield</h1>
+      <a href="#">Inbox</a>
+      <a href="#">Budget</a>
+      <a href="#">Transactions</a>
+      <a href="#">Overview</a>
       <Signout />
     </StyledHeader>
   );
