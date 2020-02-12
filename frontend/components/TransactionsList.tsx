@@ -2,6 +2,8 @@ import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import React from "react";
 import styled from "styled-components";
+import MonthSelector from "./MonthSelector";
+import { theme } from "./Page";
 import TransactionItem from "./TransactionItem";
 
 const ALL_TRANSACTIONS_QUERY = gql`
@@ -50,14 +52,13 @@ interface ITransactions {
 
 const StyledTransactionsList = styled.div`
   display: grid;
-  grid-template-columns: 20% 16% 45% 10%;
+  grid-template-columns: 20% 16% 45% 13%;
   align-items: center;
   grid-gap: 2%;
-  border-bottom: 1px solid #999999;
-  padding: 0px 0.5em 0.5em 0.5em;
-  font-size: 1.2em;
-  font-weight: bold;
-
+  border-bottom: 1px solid ${theme.manatee};
+  padding: 0px 0.5rem 0.5rem 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
 `;
 
 const TransactionList = () => {
@@ -72,7 +73,7 @@ const TransactionList = () => {
         <p>Category</p>
         <p>Date</p>
         <p>Info</p>
-        <p>Amount</p>
+        <MonthSelector />
       </StyledTransactionsList>
       {data && data.transactions.map((transaction) => (
         <TransactionItem transaction={transaction} key={transaction.id} />
@@ -80,5 +81,4 @@ const TransactionList = () => {
     </>
   );
 };
-
-export default TransactionList;
+export default TransactionList;;

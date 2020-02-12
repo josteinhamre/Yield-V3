@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledCategory = styled.div<ITransaction>`
-  height: 3em;
+  height: 3rem;
   display: flex;
   padding: 0;
   margin: 0;
@@ -12,8 +12,8 @@ const StyledCategory = styled.div<ITransaction>`
   align-items: center;
 
   p {
-    font-size: 1em;
-    font-weight: bold;
+    font-size: 1rem;
+    font-weight: 500;
     padding: 0;
     margin: 0;
     overflow: hidden;
@@ -25,10 +25,10 @@ const StyledCategory = styled.div<ITransaction>`
 
 const StyledIcon = styled.div<ITransaction>`
   background-color: #${(props) => props.category.color};
-  width: 2.4em;
-  height: 2.4em;
+  width: 2.4rem;
+  height: 2.4rem;
   border-radius: 50%;
-  margin: 0 1em;
+  margin: 0 1rem;
   display: flex;
   justify-content: center;
   align-content: center;

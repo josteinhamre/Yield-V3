@@ -1,20 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 import Category from "./Category";
+import { theme } from "./Page";
 
 const StyledTransaction = styled.div`
   display: grid;
-  grid-template-columns: 20% 16% 45% 10%;
+  grid-template-columns: 20% 16% 45% 13%;
   align-items: center;
   grid-gap: 2%;
-  border-bottom: 1px solid #999999;
-  padding: 0.2em 0px;
+  border-bottom: 1px solid ${theme.manatee};
+  padding: 0.2rem 0px;
 
   p {
     overflow: hidden;
     max-width: 100%;
     white-space: nowrap;
-    font-size: 1em;
+    font-size: 1rem;
   }
 `;
 

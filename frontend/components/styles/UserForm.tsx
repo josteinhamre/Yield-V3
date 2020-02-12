@@ -4,26 +4,26 @@ const StyledUserForm = styled.div`
   form {
     display: flex;
     flex-direction: column;
-    padding: 1em;
+    padding: 1rem;
   }
 
   label {
     font-weight: bold;
-    font-size: 0.8em;
+    font-size: 0.8rem;
   }
 
   input {
-    font-size: 1.3em;
-    padding: 0.3em;
-    border-radius: 0.2em;
-    border: 0.05em solid lightgrey;
+    font-size: 1.3rem;
+    padding: 0.3rem;
+    border-radius: 0.2rem;
+    border: 0.05rem solid lightgrey;
   }
 
   .form-group {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    margin: 0.5em;
+    margin: 0.5rem;
   }
 
   .form-row {
@@ -31,18 +31,18 @@ const StyledUserForm = styled.div`
   }
 
   .form-submit {
-    margin: 0.5em;
-    padding: 0.3em 3em;
-    font-size: 1.3em;
+    margin: 0.5rem;
+    padding: 0.3rem 3rem;
+    font-size: 1.3rem;
     align-self: flex-end;
-    border-radius: 0.2em;
-    border: 0.05em solid lightgrey;
+    border-radius: 0.2rem;
+    border: 0.05rem solid lightgrey;
     cursor: pointer;
   }
 
   .form-submit:hover {
     font-weight: bold;
-    border: 0.05em solid darkgray;
+    border: 0.05rem solid darkgray;
   }
 
   .form-submit:after {
